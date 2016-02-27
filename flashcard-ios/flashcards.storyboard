@@ -31,6 +31,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="classLabel" destination="kkI-cs-2Cx" id="wOR-jH-M5r"/>
+                                    <segue destination="I2r-70-5jF" kind="presentation" id="snR-vO-x6D"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -44,6 +45,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="slp-R7-Jht" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2134" y="596"/>
+        </scene>
+        <!--Koloda View Controller-->
+        <scene sceneID="PtC-YY-rJc">
+            <objects>
+                <viewController id="a00-9c-hBX" customClass="KolodaViewController" customModule="flashcard_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aGA-tm-l2H"/>
+                        <viewControllerLayoutGuide type="bottom" id="haL-sS-srW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eNB-YZ-rWh">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J2u-FQ-S2S" customClass="KolodaView" customModule="Koloda">
+                                <rect key="frame" x="20" y="64" width="560" height="276"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="p0D-Cf-Oaa"/>
+                    <connections>
+                        <outlet property="kolodaView" destination="J2u-FQ-S2S" id="Wu3-U7-Xbj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ciw-DT-IvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3672" y="596"/>
         </scene>
         <!--Flashcard View Controller-->
         <scene sceneID="RWa-ui-G81">
@@ -62,6 +91,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HDl-Sb-lln" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1322" y="596"/>
+        </scene>
+        <!--Koloda-->
+        <scene sceneID="SKl-sc-4O5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="I2r-70-5jF" customClass="Koloda" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="pmX-lo-Ye6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="a00-9c-hBX" kind="relationship" relationship="rootViewController" id="QFq-e6-hp7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uac-uw-AlG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2860" y="596"/>
         </scene>
     </scenes>
 </document>

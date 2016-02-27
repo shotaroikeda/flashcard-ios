@@ -19,6 +19,8 @@
 		E2F41E8B1C81C50000743BEF /* flashCardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F41E8A1C81C50000743BEF /* flashCardData.swift */; };
 		E2F41E8F1C81DDAE00743BEF /* flashcardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F41E8E1C81DDAE00743BEF /* flashcardTableViewCell.swift */; };
 		E2F41E911C81DDD300743BEF /* flashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F41E901C81DDD300743BEF /* flashcardViewController.swift */; };
+		E2F41E931C81EB7E00743BEF /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F41E921C81EB7E00743BEF /* CustomKolodaView.swift */; };
+		E2F41E951C81EBBA00743BEF /* KolodaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F41E941C81EBBA00743BEF /* KolodaViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		E2F41E8A1C81C50000743BEF /* flashCardData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = flashCardData.swift; sourceTree = "<group>"; };
 		E2F41E8E1C81DDAE00743BEF /* flashcardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = flashcardTableViewCell.swift; sourceTree = "<group>"; };
 		E2F41E901C81DDD300743BEF /* flashcardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = flashcardViewController.swift; sourceTree = "<group>"; };
+		E2F41E921C81EB7E00743BEF /* CustomKolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomKolodaView.swift; sourceTree = "<group>"; };
+		E2F41E941C81EBBA00743BEF /* KolodaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KolodaViewController.swift; sourceTree = "<group>"; };
 		EF790B4EEADCEA63DCE467AB /* Pods_flashcard_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_flashcard_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5B88B4CC7B2F5F7B82BBB77 /* Pods-flashcard-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashcard-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-flashcard-ios/Pods-flashcard-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +118,8 @@
 			isa = PBXGroup;
 			children = (
 				E2E89BD81C81B97F0060797A /* flashcards.storyboard */,
+				E2F41E921C81EB7E00743BEF /* CustomKolodaView.swift */,
+				E2F41E941C81EBBA00743BEF /* KolodaViewController.swift */,
 				E2F41E901C81DDD300743BEF /* flashcardViewController.swift */,
 				E2F41E8E1C81DDAE00743BEF /* flashcardTableViewCell.swift */,
 				E2F41E881C81C4D200743BEF /* flashcardTableViewController.swift */,
@@ -247,6 +253,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2F41E891C81C4D200743BEF /* flashcardTableViewController.swift in Sources */,
+				E2F41E951C81EBBA00743BEF /* KolodaViewController.swift in Sources */,
+				E2F41E931C81EB7E00743BEF /* CustomKolodaView.swift in Sources */,
 				E27D65471C816A590078DF40 /* LoginView.swift in Sources */,
 				E28F42591C815A6B0079A16D /* loginViewController.swift in Sources */,
 				E2F41E911C81DDD300743BEF /* flashcardViewController.swift in Sources */,
