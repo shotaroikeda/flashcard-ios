@@ -15,7 +15,18 @@ import UIKit
     @IBInspectable var frontText : UITextView!
     @IBInspectable var backText : UITextView!
 
+    /*
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    */
+    
     override func layoutSubviews() {
+        super.layoutSubviews()
         if backgroundLayer == nil {
             backgroundLayer = CAShapeLayer()
             backgroundLayer.frame = CGRect(x: 0, y: 0, width: Int(bounds.width), height: Int(bounds.height))
@@ -27,13 +38,13 @@ import UIKit
             
             frontText = UITextView(frame: CGRect(x: 10, y: 10, width: Int(bounds.width)-20, height: Int(bounds.height)-20))
             frontText.text = "Front Text"
-            frontText.font = UIFont.boldSystemFontOfSize(36)
+            frontText.font = UIFont.boldSystemFontOfSize(18)
             frontText.textAlignment = .Center
             frontText.backgroundColor = UIColor.clearColor()
 
             backText = UITextView(frame: CGRect(x: 10, y: 10, width: Int(bounds.width)-20, height: Int(bounds.height)-20))
             backText.text = "Back Text"
-            backText.font = UIFont.boldSystemFontOfSize(36)
+            backText.font = UIFont.boldSystemFontOfSize(18)
             backText.textAlignment = .Center
             backText.backgroundColor = UIColor.clearColor()
             backText.textColor = UIColor.clearColor()
@@ -57,10 +68,13 @@ import UIKit
             tap.numberOfTapsRequired = 2
             addGestureRecognizer(tap)
         }
+        
+        self.userInteractionEnabled = false
     }
     
     func doubleTapped()
     {
+        print("Card Double tapped!")
         if front
         {
             UIView.animateWithDuration(1, animations: { self.frontText.textColor = UIColor.clearColor() })

@@ -8,16 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		18820CBCF7181EF3CC208447 /* Pods_flashcard_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790B4EEADCEA63DCE467AB /* Pods_flashcard_ios.framework */; };
+		E21842481C825C9A00F6AFD0 /* flashcardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21842471C825C9A00F6AFD0 /* flashcardDetailViewController.swift */; };
 		E27D65471C816A590078DF40 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27D65461C816A590078DF40 /* LoginView.swift */; };
 		E28F42571C815A6B0079A16D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28F42561C815A6B0079A16D /* AppDelegate.swift */; };
 		E28F42591C815A6B0079A16D /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28F42581C815A6B0079A16D /* loginViewController.swift */; };
 		E28F425C1C815A6B0079A16D /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E28F425A1C815A6B0079A16D /* login.storyboard */; };
 		E28F425E1C815A6B0079A16D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E28F425D1C815A6B0079A16D /* Assets.xcassets */; };
 		E28F42611C815A6B0079A16D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E28F425F1C815A6B0079A16D /* LaunchScreen.storyboard */; };
-		E2A32A641C820BFD00D01C16 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2A32A631C820BFD00D01C16 /* Card.xib */; };
 		E2A32A661C820C6500D01C16 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A32A651C820C6500D01C16 /* Card.swift */; };
-		E2BF1E461C81FC5800F9F94E /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2BF1E451C81FC5800F9F94E /* CardView.xib */; };
-		E2BF1E481C81FE7B00F9F94E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF1E471C81FE7B00F9F94E /* CardView.swift */; };
 		E2E89BD91C81B97F0060797A /* flashcards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2E89BD81C81B97F0060797A /* flashcards.storyboard */; };
 		E2F41E891C81C4D200743BEF /* flashcardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F41E881C81C4D200743BEF /* flashcardTableViewController.swift */; };
 		E2F41E8B1C81C50000743BEF /* flashCardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F41E8A1C81C50000743BEF /* flashCardData.swift */; };
@@ -27,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		1F675D18855231D9DD0AA455 /* Pods-flashcard-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashcard-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-flashcard-ios/Pods-flashcard-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		E21842471C825C9A00F6AFD0 /* flashcardDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = flashcardDetailViewController.swift; sourceTree = "<group>"; };
 		E27D65461C816A590078DF40 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E28F42531C815A6B0079A16D /* flashcard-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "flashcard-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E28F42561C815A6B0079A16D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,10 +34,7 @@
 		E28F425D1C815A6B0079A16D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E28F42601C815A6B0079A16D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E28F42621C815A6B0079A16D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2A32A631C820BFD00D01C16 /* Card.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
 		E2A32A651C820C6500D01C16 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		E2BF1E451C81FC5800F9F94E /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
-		E2BF1E471C81FE7B00F9F94E /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E2E89BD81C81B97F0060797A /* flashcards.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = flashcards.storyboard; sourceTree = "<group>"; };
 		E2F41E881C81C4D200743BEF /* flashcardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = flashcardTableViewController.swift; sourceTree = "<group>"; };
 		E2F41E8A1C81C50000743BEF /* flashCardData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = flashCardData.swift; sourceTree = "<group>"; };
@@ -122,10 +118,7 @@
 		E2BF1E441C81FC3300F9F94E /* cardView */ = {
 			isa = PBXGroup;
 			children = (
-				E2A32A631C820BFD00D01C16 /* Card.xib */,
 				E2A32A651C820C6500D01C16 /* Card.swift */,
-				E2BF1E451C81FC5800F9F94E /* CardView.xib */,
-				E2BF1E471C81FE7B00F9F94E /* CardView.swift */,
 			);
 			name = cardView;
 			sourceTree = "<group>";
@@ -134,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				E2E89BD81C81B97F0060797A /* flashcards.storyboard */,
+				E21842471C825C9A00F6AFD0 /* flashcardDetailViewController.swift */,
 				E2F41E901C81DDD300743BEF /* flashcardViewController.swift */,
 				E2F41E8E1C81DDAE00743BEF /* flashcardTableViewCell.swift */,
 				E2F41E881C81C4D200743BEF /* flashcardTableViewController.swift */,
@@ -207,8 +201,6 @@
 				E28F42611C815A6B0079A16D /* LaunchScreen.storyboard in Resources */,
 				E28F425E1C815A6B0079A16D /* Assets.xcassets in Resources */,
 				E28F425C1C815A6B0079A16D /* login.storyboard in Resources */,
-				E2BF1E461C81FC5800F9F94E /* CardView.xib in Resources */,
-				E2A32A641C820BFD00D01C16 /* Card.xib in Resources */,
 				E2E89BD91C81B97F0060797A /* flashcards.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E21842481C825C9A00F6AFD0 /* flashcardDetailViewController.swift in Sources */,
 				E2F41E891C81C4D200743BEF /* flashcardTableViewController.swift in Sources */,
 				E27D65471C816A590078DF40 /* LoginView.swift in Sources */,
 				E28F42591C815A6B0079A16D /* loginViewController.swift in Sources */,
@@ -275,7 +268,6 @@
 				E2F41E911C81DDD300743BEF /* flashcardViewController.swift in Sources */,
 				E2F41E8F1C81DDAE00743BEF /* flashcardTableViewCell.swift in Sources */,
 				E2F41E8B1C81C50000743BEF /* flashCardData.swift in Sources */,
-				E2BF1E481C81FE7B00F9F94E /* CardView.swift in Sources */,
 				E28F42571C815A6B0079A16D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

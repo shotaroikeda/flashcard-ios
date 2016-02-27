@@ -201,6 +201,7 @@ class LoginView: UIView, UITextFieldDelegate {
         usernameInput.clearButtonMode = UITextFieldViewMode.WhileEditing;
         usernameInput.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
         usernameInput.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
+        usernameInput.autocapitalizationType = .None
         usernameInput.delegate = self
         
         passwordInput = UITextField(frame: CGRect(x: 1030, y: 30+backgroundHeight/6,
