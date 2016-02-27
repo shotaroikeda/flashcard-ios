@@ -57,6 +57,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E27D65451C8165B80078DF40 /* login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = login;
+			sourceTree = "<group>";
+		};
 		E28F424A1C815A6B0079A16D = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +88,7 @@
 				E28F42561C815A6B0079A16D /* AppDelegate.swift */,
 				E28F42581C815A6B0079A16D /* ViewController.swift */,
 				E28F425A1C815A6B0079A16D /* Main.storyboard */,
+				E27D65451C8165B80078DF40 /* login */,
 				E28F425D1C815A6B0079A16D /* Assets.xcassets */,
 				E28F425F1C815A6B0079A16D /* LaunchScreen.storyboard */,
 				E28F42621C815A6B0079A16D /* Info.plist */,
@@ -123,6 +131,7 @@
 				TargetAttributes = {
 					E28F42521C815A6B0079A16D = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = CGZL73T4X3;
 					};
 				};
 			};
@@ -325,6 +334,7 @@
 			baseConfigurationReference = 1F675D18855231D9DD0AA455 /* Pods-flashcard-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "flashcard-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.shotaroi.flashcard-ios";
@@ -337,6 +347,7 @@
 			baseConfigurationReference = F5B88B4CC7B2F5F7B82BBB77 /* Pods-flashcard-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "flashcard-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.shotaroi.flashcard-ios";

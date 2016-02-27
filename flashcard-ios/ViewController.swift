@@ -10,9 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var sloganText: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        // Hide the slogan for the appearing effect
+        sloganText.alpha = 0
+        UIView.animateWithDuration(1, delay: 0.2, options: .CurveEaseIn, animations: { self.sloganText.alpha = 1 }, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
