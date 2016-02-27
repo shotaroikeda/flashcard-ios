@@ -5,7 +5,6 @@ use_frameworks!
 
 target 'flashcard-ios' do
         pod 'Firebase', '>=2.5.0'
-        pod 'Koloda'
         pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 end
 
