@@ -16,6 +16,7 @@ class LoginView: UIView, UITextFieldDelegate {
     var usernameInput: UITextField!
     var passwordInput: UITextField!
     var loginButton: UIButton!
+    var forgotButton: UIButton!
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -24,33 +25,66 @@ class LoginView: UIView, UITextFieldDelegate {
         self.addSubview(usernameInput)
         self.addSubview(passwordInput)
         
-        setLoginButton()
+        setButtons()
         self.addSubview(loginButton)
+        self.addSubview(forgotButton)
         
         // Slide in username+password field
         // TODO: Check for iPad
         UIView.animateWithDuration(2, delay: 1.2, options: .CurveLinear, animations: { self.usernameInput.center.x += 1015 }, completion: nil)
         UIView.animateWithDuration(2, delay: 1.2, options: .CurveLinear, animations: { self.passwordInput.center.x -= 1015 }, completion: nil)
         UIView.animateWithDuration(1, delay: 3.2, options: .CurveEaseIn, animations: { self.loginButton.alpha = 1 }, completion: nil)
+        UIView.animateWithDuration(1, delay: 3.2, options: .CurveEaseIn, animations: { self.forgotButton.alpha = 1 }, completion: nil)
     }
     
-    func setLoginButton()
+    func handleLogin()
     {
+        endEditing(true)
+        
+        print("Login Was pressed!")
+        print("Username: \(usernameInput.text!)")
+        print("Password: \(passwordInput.text!)")
+    }
+    
+    func handleForgot()
+    {
+        endEditing(true)
+        print("Forgot password pressed!")
+    }
+    
+    func setButtons()
+    {
+        // Background width + height vars
+        let backgroundWidth = Double(backgroundLayer.frame.width)
+        let backgroundHeight = Double(backgroundLayer.frame.height)
+
         loginButton = UIButton(type: .Custom)
         loginButton.addTarget(self, action: "handleLogin", forControlEvents: UIControlEvents.TouchUpInside)
         loginButton.setTitle("Login", forState: .Normal)
-        let backgroundWidth = Double(backgroundLayer.frame.width)
-        let backgroundHeight = Double(backgroundLayer.frame.height)
-        loginButton.frame = CGRect(x: 15, y: backgroundHeight-60, width: backgroundWidth-30, height: backgroundHeight/6)
+        loginButton.frame = CGRect(x: 15, y: backgroundHeight-75-backgroundHeight/6, width: backgroundWidth-30, height: backgroundHeight/6)
         loginButton.layer.cornerRadius = 10
         // Login button theming
         loginButton.layer.backgroundColor = UIColor(red: 52/255, green: 73/255, blue: 94/255, alpha: 1).CGColor
         loginButton.titleLabel!.textColor = UIColor.whiteColor()
         loginButton.titleLabel!.textAlignment = .Center
         loginButton.titleLabel!.font = UIFont.boldSystemFontOfSize(20)
-        
         // Invisible for animation
         loginButton.alpha = 0
+        
+        /* Forgot Button */
+        forgotButton = UIButton(type: .Custom)
+        forgotButton.addTarget(self, action: "handleForgot", forControlEvents: UIControlEvents.TouchUpInside)
+        forgotButton.setTitle("Forgot Password?", forState: .Normal)
+        forgotButton.frame = CGRect(x: 15, y: backgroundHeight-60, width: backgroundWidth-30, height: backgroundHeight/6)
+        forgotButton.layer.cornerRadius = 10
+        // Login button theming
+        forgotButton.layer.backgroundColor = UIColor(red: 26/255, green: 188/255, blue: 156/255, alpha: 1).CGColor
+        forgotButton.titleLabel!.textColor = UIColor.whiteColor()
+        forgotButton.titleLabel!.textAlignment = .Center
+        forgotButton.titleLabel!.font = UIFont.boldSystemFontOfSize(20)
+        // Invisible for animation
+        forgotButton.alpha = 0
+
     }
     
     func setTextFields() {
@@ -96,6 +130,7 @@ class LoginView: UIView, UITextFieldDelegate {
         passwordInput.clearButtonMode = UITextFieldViewMode.WhileEditing;
         passwordInput.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
         passwordInput.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
+        passwordInput.secureTextEntry = true
         passwordInput.delegate = self
     }
     
