@@ -47,7 +47,7 @@ class LoginView: UIView, UITextFieldDelegate {
         }
     }
     
-    func handleLogin()
+    @IBAction func handleLogin()
     {
         endEditing(true)
         
@@ -101,8 +101,18 @@ class LoginView: UIView, UITextFieldDelegate {
     func loginSuccess(snapshot: FDataSnapshot) -> Void
     {
         let json = JSON(snapshot.value)
-        print(json)
         print("Successful log in!")
+        
+        var topVC = UIApplication.sharedApplication().keyWindow?.rootViewController
+        while((topVC!.presentedViewController) != nil){
+            topVC = topVC!.presentedViewController
+        }
+
+        let storyboard = UIStoryboard(name: "flashcards", bundle: nil)
+        let controller = storyboard.instantiateViewControllerWithIdentifier("flashcard-entry") as! flashcardViewController
+        controller.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+        controller.userJSON = json
+        topVC?.presentViewController(controller, animated: true, completion: nil)
     }
     
     func loginFail()
@@ -128,7 +138,7 @@ class LoginView: UIView, UITextFieldDelegate {
         topVC?.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func handleForgot()
+    @IBAction func handleForgot()
     {
         endEditing(true)
         print("Forgot password pressed!")

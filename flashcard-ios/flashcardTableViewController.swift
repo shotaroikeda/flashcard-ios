@@ -107,6 +107,10 @@ class flashcardTableViewController: UITableViewController {
         // Populate the tables with fake data...
         populateFakeData()
         // Remove when done testing
+        
+        self.navigationController!.navigationBar.topItem!.title = "Classes"
+        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController!.navigationBar.barTintColor = UIColor(red: 52/255, green: 73/255, blue: 94/255, alpha: 1)
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,24 +121,22 @@ class flashcardTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return userData.classNames.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("classTitle", forIndexPath: indexPath) as! flashcardTableViewCell
+        cell.classLabel!.text = userData.classNames[indexPath.row]
 
         // Configure the cell...
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
