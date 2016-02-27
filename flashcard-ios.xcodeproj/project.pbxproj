@@ -14,6 +14,7 @@
 		E28F425C1C815A6B0079A16D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E28F425A1C815A6B0079A16D /* Main.storyboard */; };
 		E28F425E1C815A6B0079A16D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E28F425D1C815A6B0079A16D /* Assets.xcassets */; };
 		E28F42611C815A6B0079A16D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E28F425F1C815A6B0079A16D /* LaunchScreen.storyboard */; };
+		E2E89BD91C81B97F0060797A /* flashcards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2E89BD81C81B97F0060797A /* flashcards.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		E28F425D1C815A6B0079A16D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E28F42601C815A6B0079A16D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E28F42621C815A6B0079A16D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2E89BD81C81B97F0060797A /* flashcards.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = flashcards.storyboard; sourceTree = "<group>"; };
 		EF790B4EEADCEA63DCE467AB /* Pods_flashcard_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_flashcard_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5B88B4CC7B2F5F7B82BBB77 /* Pods-flashcard-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashcard-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-flashcard-ios/Pods-flashcard-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,12 +93,21 @@
 				E28F42581C815A6B0079A16D /* ViewController.swift */,
 				E28F425A1C815A6B0079A16D /* Main.storyboard */,
 				E27D65461C816A590078DF40 /* LoginView.swift */,
+				E2E89BDA1C81B9890060797A /* flashcards */,
 				E27D65451C8165B80078DF40 /* login */,
 				E28F425D1C815A6B0079A16D /* Assets.xcassets */,
 				E28F425F1C815A6B0079A16D /* LaunchScreen.storyboard */,
 				E28F42621C815A6B0079A16D /* Info.plist */,
 			);
 			path = "flashcard-ios";
+			sourceTree = "<group>";
+		};
+		E2E89BDA1C81B9890060797A /* flashcards */ = {
+			isa = PBXGroup;
+			children = (
+				E2E89BD81C81B97F0060797A /* flashcards.storyboard */,
+			);
+			name = flashcards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +175,7 @@
 				E28F42611C815A6B0079A16D /* LaunchScreen.storyboard in Resources */,
 				E28F425E1C815A6B0079A16D /* Assets.xcassets in Resources */,
 				E28F425C1C815A6B0079A16D /* Main.storyboard in Resources */,
+				E2E89BD91C81B97F0060797A /* flashcards.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

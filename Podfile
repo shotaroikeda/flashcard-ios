@@ -5,5 +5,9 @@ use_frameworks!
 
 target 'flashcard-ios' do
         pod 'Firebase', '>=2.5.0'
+        pod 'Koloda'
 end
 
+post_install do |installer|
+    `find Pods -regex 'Pods/pop.*\\.h' -print0 | xargs -0 sed -i '' 's/\\(<\\)pop\\/\\(.*\\)\\(>\\)/\\"\\2\\"/'`
+end
