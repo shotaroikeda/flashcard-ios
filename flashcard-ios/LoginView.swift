@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @IBDesignable
 class LoginView: UIView, UITextFieldDelegate {
@@ -18,6 +19,8 @@ class LoginView: UIView, UITextFieldDelegate {
     var loginButton: UIButton!
     var forgotButton: UIButton!
     var firstLaunch = true
+    
+    let actInd = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -60,16 +63,32 @@ class LoginView: UIView, UITextFieldDelegate {
             let backgroundWidth = Double(self.backgroundLayer.frame.width)
             let backgroundHeight = Double(self.backgroundLayer.frame.height)
             
-            let actInd = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-            actInd.center = CGPoint(x: backgroundWidth/2, y: backgroundHeight-65)
-            actInd.layer.cornerRadius = 10
-            actInd.activityIndicatorViewStyle = .WhiteLarge
-            actInd.backgroundColor = UIColor(red: 52/255, green: 73/255, blue: 94/255, alpha: 1)
-            self.addSubview(actInd)
-            actInd.startAnimating()
+            self.actInd.center = CGPoint(x: backgroundWidth/2, y: backgroundHeight-65)
+            self.actInd.layer.cornerRadius = 10
+            self.actInd.activityIndicatorViewStyle = .WhiteLarge
+            self.actInd.backgroundColor = UIColor(red: 52/255, green: 73/255, blue: 94/255, alpha: 1)
+            self.addSubview(self.actInd)
+            self.actInd.startAnimating()
 
             // Put firebase login function here
-            
+            ref.authUser(self.usernameInput.text, password: self.passwordInput.text, withCompletionBlock: {
+                err, authData in
+                if err != nil {
+                    // Show error here
+                    self.loginFail()
+                    print("Username or Passworld Invalid!")
+                } else {
+                    let currUser = ref.childByAppendingPath("users").childByAppendingPath(authData.uid)
+                    currUser.observeEventType(.Value, withBlock: { snapshot in
+                        
+                        self.actInd.stopAnimating()
+                        self.actInd.removeFromSuperview()
+                        self.loginSuccess(snapshot)
+                        // Snapshot received
+                    })
+                    
+                }
+            })
             // sleep(2) // remove later
             
             // actInd.stopAnimating()
@@ -84,9 +103,10 @@ class LoginView: UIView, UITextFieldDelegate {
         
     }
     
-    func loginSuccess()
+    func loginSuccess(snapshot: FDataSnapshot) -> Void
     {
-        
+        print(snapshot)
+        print("Successful log in!")
     }
     
     func loginFail()

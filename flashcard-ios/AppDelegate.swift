@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+
+var ref = Firebase(url: "https://spartahack2016.firebaseio.com")
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
