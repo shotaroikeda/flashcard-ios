@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		18820CBCF7181EF3CC208447 /* Pods_flashcard_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790B4EEADCEA63DCE467AB /* Pods_flashcard_ios.framework */; };
+		E27D65471C816A590078DF40 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27D65461C816A590078DF40 /* LoginView.swift */; };
 		E28F42571C815A6B0079A16D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28F42561C815A6B0079A16D /* AppDelegate.swift */; };
 		E28F42591C815A6B0079A16D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28F42581C815A6B0079A16D /* ViewController.swift */; };
 		E28F425C1C815A6B0079A16D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E28F425A1C815A6B0079A16D /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		1F675D18855231D9DD0AA455 /* Pods-flashcard-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashcard-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-flashcard-ios/Pods-flashcard-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		E27D65461C816A590078DF40 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E28F42531C815A6B0079A16D /* flashcard-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "flashcard-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E28F42561C815A6B0079A16D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E28F42581C815A6B0079A16D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				E28F42561C815A6B0079A16D /* AppDelegate.swift */,
 				E28F42581C815A6B0079A16D /* ViewController.swift */,
 				E28F425A1C815A6B0079A16D /* Main.storyboard */,
+				E27D65461C816A590078DF40 /* LoginView.swift */,
 				E27D65451C8165B80078DF40 /* login */,
 				E28F425D1C815A6B0079A16D /* Assets.xcassets */,
 				E28F425F1C815A6B0079A16D /* LaunchScreen.storyboard */,
@@ -219,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E27D65471C816A590078DF40 /* LoginView.swift in Sources */,
 				E28F42591C815A6B0079A16D /* ViewController.swift in Sources */,
 				E28F42571C815A6B0079A16D /* AppDelegate.swift in Sources */,
 			);
@@ -339,6 +343,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.shotaroi.flashcard-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -352,6 +357,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.shotaroi.flashcard-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
