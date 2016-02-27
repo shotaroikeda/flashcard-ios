@@ -17,33 +17,92 @@ class LoginView: UIView, UITextFieldDelegate {
     var passwordInput: UITextField!
     var loginButton: UIButton!
     var forgotButton: UIButton!
+    var firstLaunch = true
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        setBackgroundLayer()
-        setTextFields()
-        self.addSubview(usernameInput)
-        self.addSubview(passwordInput)
-        
-        setButtons()
-        self.addSubview(loginButton)
-        self.addSubview(forgotButton)
-        
-        // Slide in username+password field
-        // TODO: Check for iPad
-        UIView.animateWithDuration(2, delay: 1.2, options: .CurveLinear, animations: { self.usernameInput.center.x += 1015 }, completion: nil)
-        UIView.animateWithDuration(2, delay: 1.2, options: .CurveLinear, animations: { self.passwordInput.center.x -= 1015 }, completion: nil)
-        UIView.animateWithDuration(1, delay: 3.2, options: .CurveEaseIn, animations: { self.loginButton.alpha = 1 }, completion: nil)
-        UIView.animateWithDuration(1, delay: 3.2, options: .CurveEaseIn, animations: { self.forgotButton.alpha = 1 }, completion: nil)
+        if firstLaunch
+        {
+            setBackgroundLayer()
+            setTextFields()
+            self.addSubview(usernameInput)
+            self.addSubview(passwordInput)
+            
+            setButtons()
+            self.addSubview(loginButton)
+            self.addSubview(forgotButton)
+            
+            // Slide in username+password field
+            // TODO: Check for iPad
+            UIView.animateWithDuration(2, delay: 1.2, options: .CurveLinear, animations: { self.usernameInput.center.x += 1015 }, completion: nil)
+            UIView.animateWithDuration(2, delay: 1.2, options: .CurveLinear, animations: { self.passwordInput.center.x -= 1015 }, completion: nil)
+            UIView.animateWithDuration(1, delay: 3.2, options: .CurveEaseIn, animations: { self.loginButton.alpha = 1 }, completion: nil)
+            UIView.animateWithDuration(1, delay: 3.2, options: .CurveEaseIn, animations: { self.forgotButton.alpha = 1 }, completion: nil)
+            
+            firstLaunch = false
+        }
     }
     
     func handleLogin()
     {
         endEditing(true)
         
+        // Make the activity Indicator not suck
+        self.usernameInput.userInteractionEnabled = false
+        self.passwordInput.userInteractionEnabled = false
+        // Disable login + forgot password button
+        UIView.animateWithDuration(1, delay: 0, options: .CurveEaseIn, animations: { self.forgotButton.alpha = 0 }, completion: nil)
+        UIView.animateWithDuration(1, delay: 0, options: .CurveEaseIn, animations: { self.loginButton.alpha = 0 }) { [unowned self] (finish : Bool) in
+            self.loginButton.userInteractionEnabled = false
+            self.forgotButton.userInteractionEnabled = false
+            
+            // Add a box around the indicator
+            let backgroundWidth = Double(self.backgroundLayer.frame.width)
+            let backgroundHeight = Double(self.backgroundLayer.frame.height)
+            
+            let actInd = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+            actInd.center = CGPoint(x: backgroundWidth/2, y: backgroundHeight-65)
+            actInd.layer.cornerRadius = 10
+            actInd.activityIndicatorViewStyle = .WhiteLarge
+            actInd.backgroundColor = UIColor(red: 52/255, green: 73/255, blue: 94/255, alpha: 1)
+            self.addSubview(actInd)
+            actInd.startAnimating()
+
+            // Put firebase login function here
+            
+            // sleep(2) // remove later
+            
+            // actInd.stopAnimating()
+            // actInd.removeFromSuperview()
+
+            // self.loginFail() // remove later
+        }
+        
         print("Login Was pressed!")
         print("Username: \(usernameInput.text!)")
         print("Password: \(passwordInput.text!)")
+        
+    }
+    
+    func loginSuccess()
+    {
+        
+    }
+    
+    func loginFail()
+    {
+        
+        // TODO: Add login and forgot buttons back
+        self.usernameInput.userInteractionEnabled = true
+        self.passwordInput.userInteractionEnabled = true
+
+        UIView.animateWithDuration(1, delay: 0, options: .CurveEaseIn, animations: { self.loginButton.alpha = 1 }) { [unowned self] (finish : Bool) in
+            self.loginButton.userInteractionEnabled = true
+        }
+        
+        UIView.animateWithDuration(1, delay: 0, options: .CurveEaseIn, animations: { self.forgotButton.alpha = 1 }) { [unowned self] (finish : Bool) in
+            self.forgotButton.userInteractionEnabled = true
+        }
     }
     
     func handleForgot()
@@ -183,6 +242,7 @@ class LoginView: UIView, UITextFieldDelegate {
             passwordInput.becomeFirstResponder()
         } else {
             textField.resignFirstResponder();
+            handleLogin()
         }
         return true;
     }
