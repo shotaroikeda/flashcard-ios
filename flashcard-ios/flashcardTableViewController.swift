@@ -44,16 +44,16 @@ class flashcardTableViewController: UITableViewController {
                     answer: "int arr[num1][num2];",
                     weight: 1.0, tries_attempted: 0, total_attempted: 0),
                 /* Question 8 */
-                Question(question: "How do you make a 2D array in Java?",
-                    answer: "int arr[num1][num2];",
+                Question(question: "What is the key word associated with inheritance?",
+                    answer: "extends",
                     weight: 1.0, tries_attempted: 0, total_attempted: 0),
                 /* Question 9 */
-                Question(question: "How do you make a 2D array in Java?",
-                    answer: "int arr[num1][num2];",
+                Question(question: "What does implements do?",
+                    answer: "Implements from a interface class.",
                     weight: 1.0, tries_attempted: 0, total_attempted: 0),
                 /* Qusetion 10 */
-                Question(question: "How do you make a 2D array in Java?",
-                    answer: "int arr[num1][num2];",
+                Question(question: "What are Java's primatives?",
+                    answer: "int, long, char, float, and double",
                     weight: 1.0, tries_attempted: 0, total_attempted: 0)
             ],
             "CS 241" :
