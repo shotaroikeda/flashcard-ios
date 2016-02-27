@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class card: UIView {
+@IBDesignable class Card: UIView {
     var backgroundLayer : CAShapeLayer!
     var front = true
     
