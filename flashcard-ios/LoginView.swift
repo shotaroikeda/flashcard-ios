@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftyJSON
 
 @IBDesignable
 class LoginView: UIView, UITextFieldDelegate {
@@ -99,7 +100,8 @@ class LoginView: UIView, UITextFieldDelegate {
     
     func loginSuccess(snapshot: FDataSnapshot) -> Void
     {
-        print(snapshot)
+        let json = JSON(snapshot.value)
+        print(json)
         print("Successful log in!")
     }
     

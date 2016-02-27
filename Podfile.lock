@@ -3,14 +3,26 @@ PODS:
   - Koloda (2.0.10):
     - pop (~> 1.0)
   - pop (1.0.9)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Firebase (>= 2.5.0)
   - Koloda
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 42bdb102d2624b143c07850ebdc1537d5b6579b6
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   Koloda: 10f747feeff5e425061f78e5ce17208783e34a99
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0

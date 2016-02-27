@@ -15,6 +15,8 @@
 		E28F425E1C815A6B0079A16D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E28F425D1C815A6B0079A16D /* Assets.xcassets */; };
 		E28F42611C815A6B0079A16D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E28F425F1C815A6B0079A16D /* LaunchScreen.storyboard */; };
 		E2E89BD91C81B97F0060797A /* flashcards.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2E89BD81C81B97F0060797A /* flashcards.storyboard */; };
+		E2F41E891C81C4D200743BEF /* flashcardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F41E881C81C4D200743BEF /* flashcardTableViewController.swift */; };
+		E2F41E8B1C81C50000743BEF /* flashCardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F41E8A1C81C50000743BEF /* flashCardData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		E28F42601C815A6B0079A16D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E28F42621C815A6B0079A16D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2E89BD81C81B97F0060797A /* flashcards.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = flashcards.storyboard; sourceTree = "<group>"; };
+		E2F41E881C81C4D200743BEF /* flashcardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = flashcardTableViewController.swift; sourceTree = "<group>"; };
+		E2F41E8A1C81C50000743BEF /* flashCardData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = flashCardData.swift; sourceTree = "<group>"; };
 		EF790B4EEADCEA63DCE467AB /* Pods_flashcard_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_flashcard_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5B88B4CC7B2F5F7B82BBB77 /* Pods-flashcard-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashcard-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-flashcard-ios/Pods-flashcard-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				E2E89BD81C81B97F0060797A /* flashcards.storyboard */,
+				E2F41E881C81C4D200743BEF /* flashcardTableViewController.swift */,
+				E2F41E8A1C81C50000743BEF /* flashCardData.swift */,
 			);
 			name = flashcards;
 			sourceTree = "<group>";
@@ -234,8 +240,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2F41E891C81C4D200743BEF /* flashcardTableViewController.swift in Sources */,
 				E27D65471C816A590078DF40 /* LoginView.swift in Sources */,
 				E28F42591C815A6B0079A16D /* loginViewController.swift in Sources */,
+				E2F41E8B1C81C50000743BEF /* flashCardData.swift in Sources */,
 				E28F42571C815A6B0079A16D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
