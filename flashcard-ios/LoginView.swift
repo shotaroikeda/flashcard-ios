@@ -75,12 +75,12 @@ class LoginView: UIView, UITextFieldDelegate {
                 err, authData in
                 if err != nil {
                     // Show error here
+                    self.actInd.stopAnimating()
+                    self.actInd.removeFromSuperview()
                     self.loginFail()
-                    print("Username or Passworld Invalid!")
                 } else {
                     let currUser = ref.childByAppendingPath("users").childByAppendingPath(authData.uid)
                     currUser.observeEventType(.Value, withBlock: { snapshot in
-                        
                         self.actInd.stopAnimating()
                         self.actInd.removeFromSuperview()
                         self.loginSuccess(snapshot)
@@ -89,12 +89,6 @@ class LoginView: UIView, UITextFieldDelegate {
                     
                 }
             })
-            // sleep(2) // remove later
-            
-            // actInd.stopAnimating()
-            // actInd.removeFromSuperview()
-
-            // self.loginFail() // remove later
         }
         
         print("Login Was pressed!")
@@ -111,8 +105,6 @@ class LoginView: UIView, UITextFieldDelegate {
     
     func loginFail()
     {
-        
-        // TODO: Add login and forgot buttons back
         self.usernameInput.userInteractionEnabled = true
         self.passwordInput.userInteractionEnabled = true
 
@@ -123,6 +115,15 @@ class LoginView: UIView, UITextFieldDelegate {
         UIView.animateWithDuration(1, delay: 0, options: .CurveEaseIn, animations: { self.forgotButton.alpha = 1 }) { [unowned self] (finish : Bool) in
             self.forgotButton.userInteractionEnabled = true
         }
+        
+        let alert = UIAlertController(title: "Login Failed", message: "Either your username or password is invalid.", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .Default, handler: nil))
+        
+        var topVC = UIApplication.sharedApplication().keyWindow?.rootViewController
+        while((topVC!.presentedViewController) != nil){
+            topVC = topVC!.presentedViewController
+        }
+        topVC?.presentViewController(alert, animated: true, completion: nil)
     }
     
     func handleForgot()
@@ -183,7 +184,7 @@ class LoginView: UIView, UITextFieldDelegate {
         usernameInput.layer.backgroundColor = UIColor.whiteColor().CGColor
         usernameInput.layer.borderWidth = 1.0
         usernameInput.autocorrectionType = UITextAutocorrectionType.No
-        usernameInput.keyboardType = UIKeyboardType.Default
+        usernameInput.keyboardType = UIKeyboardType.EmailAddress
         usernameInput.returnKeyType = UIReturnKeyType.Next
         usernameInput.clearButtonMode = UITextFieldViewMode.WhileEditing;
         usernameInput.contentVerticalAlignment = UIControlContentVerticalAlignment.Center

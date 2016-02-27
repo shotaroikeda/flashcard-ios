@@ -145,7 +145,7 @@
 				TargetAttributes = {
 					E28F42521C815A6B0079A16D = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 6K4MZ5P8PJ;
+						DevelopmentTeam = CGZL73T4X3;
 					};
 				};
 			};
@@ -354,7 +354,7 @@
 				INFOPLIST_FILE = "flashcard-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.shotaro.flashcard-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.shotaroi.flashcard-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -369,7 +369,7 @@
 				INFOPLIST_FILE = "flashcard-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.shotaro.flashcard-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.shotaroi.flashcard-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
