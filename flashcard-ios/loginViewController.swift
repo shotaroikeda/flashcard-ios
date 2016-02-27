@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class loginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var sloganText: UILabel!
     @IBOutlet var loginView: LoginView!
