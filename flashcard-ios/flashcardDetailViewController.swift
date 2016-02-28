@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import Firebase
 
 class flashcardDetailViewController: UIViewController {
     var cardFront: Card!
@@ -50,9 +51,11 @@ class flashcardDetailViewController: UIViewController {
                 self.flipMarkButton.removeTarget(nil, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
 
                 /* Add firebase code here */
-                let percentageRight = calcPercentage()
+                let percentageRight = calcPercentage()*100
                 
-                let action = UIAlertController(title: "Finished!", message: "You have got \(percentageRight*100)% right!", preferredStyle: .Alert)
+                
+                
+                let action = UIAlertController(title: "Finished!", message: "You have got \(percentageRight)% right!", preferredStyle: .Alert)
                 action.addAction(UIAlertAction(title: "Ok", style: .Default) { [unowned self] (_) in
                         self.navigationController?.popToRootViewControllerAnimated(true)
                     }
