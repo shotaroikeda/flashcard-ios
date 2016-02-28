@@ -192,7 +192,6 @@ class flashcardDetailViewController: UIViewController {
     {
         // User got the answer wrong
         self.cardFront.questionObj.total+=1
-        self.cardFront.questionObj.right+=1
         self.cardFront.questionObj.weight += 0.1
         
         if self.cardFront.questionObj.weight > 1.0
