@@ -49,13 +49,15 @@ class flashcardDetailViewController: UIViewController {
                 self.flipMarkButton.userInteractionEnabled = false
                 self.flipMarkButton.removeTarget(nil, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
 
+                /* Add firebase code here */
                 let percentageRight = calcPercentage()
                 
-                let action = UIAlertController(title: "Finished!", message: "You have got right!", preferredStyle: .Alert)
-                action.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
-                self.presentViewController(action, animated: true) { [unowned self] in
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                }
+                let action = UIAlertController(title: "Finished!", message: "You have got \(percentageRight*100)% right!", preferredStyle: .Alert)
+                action.addAction(UIAlertAction(title: "Ok", style: .Default) { [unowned self] (_) in
+                        self.navigationController?.popToRootViewControllerAnimated(true)
+                    }
+                )
+                self.presentViewController(action, animated: true, completion: nil)
             }
         }
     }
@@ -70,7 +72,7 @@ class flashcardDetailViewController: UIViewController {
             return 0.0
         }
 
-        let totalRight = questions.reduce(0, combine: { (n : Int, q : Question) in
+        let totalRight = questions.reduce(1, combine: { (n : Int, q : Question) in
             return n+q.right
         })
         
@@ -157,9 +159,6 @@ class flashcardDetailViewController: UIViewController {
             
             // Set up cards...
             cardFront.frame = CGRect(x: 50, y: (self.navigationController?.navigationBar.frame.size.height)!+40, width: cardWidth, height: cardHeight)
-            cardMid.frame = CGRect(x: 35, y: (self.navigationController?.navigationBar.frame.size.height)!+55, width: cardWidth, height: cardHeight)
-            cardBack.frame = CGRect(x: 20, y: (self.navigationController?.navigationBar.frame.size.height)!+70, width: cardWidth, height: cardHeight)
-            cardInvisible.frame = CGRect(x: -30, y: (self.navigationController?.navigationBar.frame.size.height)!+120, width: cardWidth, height: cardHeight)
             
             cardMid.alpha = 0
             cardBack.alpha = 0
@@ -183,8 +182,6 @@ class flashcardDetailViewController: UIViewController {
             // Set up cards...
             cardFront.frame = CGRect(x: 50, y: (self.navigationController?.navigationBar.frame.size.height)!+40, width: cardWidth, height: cardHeight)
             cardMid.frame = CGRect(x: 35, y: (self.navigationController?.navigationBar.frame.size.height)!+55, width: cardWidth, height: cardHeight)
-            cardBack.frame = CGRect(x: 20, y: (self.navigationController?.navigationBar.frame.size.height)!+70, width: cardWidth, height: cardHeight)
-            cardInvisible.frame = CGRect(x: -30, y: (self.navigationController?.navigationBar.frame.size.height)!+120, width: cardWidth, height: cardHeight)
             
             cardBack.alpha = 0
             // Card invisible is invisible
@@ -196,6 +193,28 @@ class flashcardDetailViewController: UIViewController {
             
             return
 
+        } else if !practice && questionsQueue.count == 3 {
+                cardFront.loadQuestion(nextQuestion)
+                cardMid.loadQuestion(questionsQueue[questionsQueue.count-1])
+                
+                // Set up workableRegion
+                let workableWidth = self.view.bounds.width
+                let workableHeight = self.view.bounds.height
+                
+                let cardWidth = workableWidth - 70
+                let cardHeight = workableHeight - 200
+                
+                // Set up cards...
+                cardFront.frame = CGRect(x: 50, y: (self.navigationController?.navigationBar.frame.size.height)!+40, width: cardWidth, height: cardHeight)
+                cardMid.frame = CGRect(x: 35, y: (self.navigationController?.navigationBar.frame.size.height)!+55, width: cardWidth, height: cardHeight)
+                cardBack.frame = CGRect(x: 20, y: (self.navigationController?.navigationBar.frame.size.height)!+70, width: cardWidth, height: cardHeight)
+            
+                // Add the subviews
+                view.addSubview(cardBack)
+                view.addSubview(cardMid)
+                view.addSubview(cardFront)
+                
+                return
         }
         
         cardFront.loadQuestion(nextQuestion)
