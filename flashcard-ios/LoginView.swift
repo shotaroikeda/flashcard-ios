@@ -71,6 +71,7 @@ class LoginView: UIView, UITextFieldDelegate {
             self.addSubview(self.actInd)
             self.actInd.startAnimating()
 
+            
             // Put firebase login function here
             ref.authUser(self.usernameInput.text, password: self.passwordInput.text, withCompletionBlock: {
                 err, authData in
@@ -82,26 +83,29 @@ class LoginView: UIView, UITextFieldDelegate {
                 } else {
                     let currUser = ref.childByAppendingPath("users").childByAppendingPath(authData.uid)
                     currUser.observeEventType(.Value, withBlock: { snapshot in
+                        // Parse Data to JSON array
+                        var classes:[JSON] = []
+                        let data = JSON(snapshot.value)
+                        for(_, subJson):(String, JSON) in data {
+                            for(_, subJsonTwo):(String, JSON) in subJson {
+                                classes.append(subJsonTwo)
+                            }
+                        }
+                        
                         self.actInd.stopAnimating()
                         self.actInd.removeFromSuperview()
-                        self.loginSuccess(snapshot)
+                        print(classes)
+                        self.loginSuccess(classes)
                         // Snapshot received
                     })
                     
                 }
             })
         }
-        
-        print("Login Was pressed!")
-        print("Username: \(usernameInput.text!)")
-        print("Password: \(passwordInput.text!)")
-        
     }
     
-    func loginSuccess(snapshot: FDataSnapshot) -> Void
+    func loginSuccess(classes: [JSON])
     {
-        let json = JSON(snapshot.value)
-        print(json)
         print("Successful log in!")
         
         var topVC = UIApplication.sharedApplication().keyWindow?.rootViewController
@@ -112,7 +116,8 @@ class LoginView: UIView, UITextFieldDelegate {
         let storyboard = UIStoryboard(name: "flashcards", bundle: nil)
         let controller = storyboard.instantiateViewControllerWithIdentifier("flashcard-entry") as! flashcardViewController
         controller.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
-        controller.userJSON = json
+        
+        controller.userJSON = classes
         topVC?.presentViewController(controller, animated: true, completion: nil)
     }
     

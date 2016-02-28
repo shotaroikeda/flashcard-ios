@@ -11,11 +11,10 @@ import SwiftyJSON
 
 class flashcardViewController: UINavigationController {
 
-    var userJSON : JSON!
+    var userJSON : [JSON]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

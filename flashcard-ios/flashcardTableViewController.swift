@@ -179,7 +179,6 @@ class flashcardTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let selectedIndex = self.tableView.indexPathForCell(sender as! flashcardTableViewCell)
-        print(selectedIndex!.row)
         if segue.identifier == "toCardView" {
             if let flashView = segue.destinationViewController as? flashcardDetailViewController {
                 flashView.classTitle = userData.classNames[selectedIndex!.row]
