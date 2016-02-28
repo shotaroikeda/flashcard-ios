@@ -17,12 +17,15 @@ class flashcardDetailViewController: UIViewController {
     
     var classTitle : String = "ClassNotSet"
     var doubleTap : UITapGestureRecognizer!
-    
+    var swipeLeft : UISwipeGestureRecognizer!
+    var swipeRight : UISwipeGestureRecognizer!
+
     var questions : [Question]! = [Question()]
+    var first : Bool = true
 
     var questionsQueue : [Question]! {
         didSet {
-            if questionsQueue.count == 0 {
+            if questionsQueue.count == 4 {
                 self.populateQueue()
             }
         }
@@ -30,12 +33,31 @@ class flashcardDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Set the double tap handler
-        doubleTap = UITapGestureRecognizer(target: self, action: "doubleTapped")
-        doubleTap.numberOfTapsRequired = 2
-        
+       
         self.navigationItem.title = classTitle
+        loadCards()
+        
+        // Initialize Gestures
+        initGestures()
+        
+        // Add buttons
+        
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        cardFront.removeFromSuperview()
+        cardMid.removeFromSuperview()
+        cardBack.removeFromSuperview()
+        cardInvisible.removeFromSuperview()
 
+        tapRecogPlane.removeGestureRecognizer(doubleTap)
+        tapRecogPlane.removeGestureRecognizer(swipeLeft)
+        tapRecogPlane.removeGestureRecognizer(swipeRight)
+    }
+    
+    func loadCards() {
         // Do any additional setup after loading the view.
         cardFront = Card()
         cardMid = Card()
@@ -45,7 +67,7 @@ class flashcardDetailViewController: UIViewController {
         // Set up workableRegion
         let workableWidth = self.view.bounds.width
         let workableHeight = self.view.bounds.height
-
+        
         let cardWidth = workableWidth - 70
         let cardHeight = workableHeight - 200
         
@@ -53,35 +75,135 @@ class flashcardDetailViewController: UIViewController {
         cardFront.frame = CGRect(x: 50, y: (self.navigationController?.navigationBar.frame.size.height)!+40, width: cardWidth, height: cardHeight)
         cardMid.frame = CGRect(x: 35, y: (self.navigationController?.navigationBar.frame.size.height)!+55, width: cardWidth, height: cardHeight)
         cardBack.frame = CGRect(x: 20, y: (self.navigationController?.navigationBar.frame.size.height)!+70, width: cardWidth, height: cardHeight)
-        cardInvisible.frame = CGRect(x: 5, y: (self.navigationController?.navigationBar.frame.size.height)!+85, width: cardWidth, height: cardHeight)
+        cardInvisible.frame = CGRect(x: -30, y: (self.navigationController?.navigationBar.frame.size.height)!+120, width: cardWidth, height: cardHeight)
         
         // Card invisible is invisible
         cardInvisible.alpha = 0
-
         
         // Add the subviews
+        view.addSubview(cardInvisible)
         view.addSubview(cardBack)
         view.addSubview(cardMid)
         view.addSubview(cardFront)
-        // Add Gesture recognizers for cards...
-        
-
-        // Set the recognization plane
-        tapRecogPlane = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: (self.navigationController?.navigationBar.frame.size.height)!+70))
-        tapRecogPlane.backgroundColor = UIColor.clearColor() // Change to clear
-        tapRecogPlane.addGestureRecognizer(doubleTap)
-        view.addSubview(tapRecogPlane)
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(true)
-        tapRecogPlane.removeGestureRecognizer(doubleTap)
+    // MARK: Animation/Queue helper functions
+    func shiftQueue(finished: Bool)
+    {
+        if finished {
+            self.view.userInteractionEnabled = false
+            // clean up
+            cardFront.removeFromSuperview()
+            cardMid.removeFromSuperview()
+            cardBack.removeFromSuperview()
+            cardInvisible.removeFromSuperview()
+            tapRecogPlane.removeFromSuperview()
+            
+            // reload the cards
+            loadCards()
+            
+            self.view.addSubview(tapRecogPlane)
+            self.view.userInteractionEnabled = true
+        }
+    }
+    
+    // MARK: Gesture recognizer
+    func initGestures () {
+        // Set the double tap handler
+        doubleTap = UITapGestureRecognizer(target: self, action: "doubleTapped")
+        doubleTap.numberOfTapsRequired = 2
+        
+        // Set the swiping gestures
+        swipeLeft = UISwipeGestureRecognizer(target: self, action: "leftSwipe")
+        swipeRight = UISwipeGestureRecognizer(target: self, action: "rightSwipe")
+        swipeLeft.direction = .Left
+        swipeRight.direction = .Right
+        
+        // Set the recognization plane
+        tapRecogPlane = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: (self.navigationController?.navigationBar.frame.size.height)!+70+cardBack.frame.height))
+        tapRecogPlane.backgroundColor = UIColor.clearColor() // Change to clear
+        tapRecogPlane.addGestureRecognizer(doubleTap)
+        tapRecogPlane.addGestureRecognizer(swipeLeft)
+        tapRecogPlane.addGestureRecognizer(swipeRight)
+
+        view.addSubview(tapRecogPlane)
     }
     
     func doubleTapped ()
     {
         print("Tap is working")
         cardFront.showNextPanel()
+    }
+    
+    func leftSwipe ()
+    {
+        print("left swipe")
+        // Animation...
+        
+        // Movement animations
+        UIView.animateWithDuration(0.5, delay: 0, options: .CurveLinear, animations: { [unowned self] in
+            // cardFront Animations
+            self.cardFront.center.x -= 50
+            self.cardFront.center.y += 50
+            // self.cardFront.transform = CGAffineTransformMakeScale(0.5, 0.5)
+            // self.cardFront.transform = CGAffineTransformMakeRotation(6*CGFloat(M_PI))
+
+            // cardMid animations
+            self.cardMid.center.x += 15
+            self.cardMid.center.y -= 15
+            
+            // cardBack animations
+            self.cardBack.center.x += 15
+            self.cardBack.center.y -= 15
+            
+            // cardInvisible animations
+            self.cardInvisible.center.x += 50
+            self.cardInvisible.center.y -= 50
+            
+            }, completion: nil)
+        
+        UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseIn, animations: { [unowned self] in
+            // cardFront Animations
+            self.cardFront.alpha = 0
+            // cardInvisible Animation
+            self.cardInvisible.alpha = 1
+            }, completion: shiftQueue)
+
+    }
+    
+    func rightSwipe ()
+    {
+        print("right swipe")
+        
+        // Animation...
+        
+        // Movement animations
+        UIView.animateWithDuration(0.5, delay: 0, options: .CurveLinear, animations: { [unowned self] in
+            // cardFront Animations
+            self.cardFront.center.x += 50
+            self.cardFront.center.y -= 50
+            
+            // cardMid animations
+            self.cardMid.center.x += 15
+            self.cardMid.center.y -= 15
+            
+            // cardBack animations
+            self.cardBack.center.x += 15
+            self.cardBack.center.y -= 15
+            
+            // cardInvisible animations
+            self.cardInvisible.center.x += 50
+            self.cardInvisible.center.y -= 50
+            
+            }, completion: nil)
+        
+        UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseIn, animations: { [unowned self] in
+            // cardFront Animations
+            self.cardFront.alpha = 0
+            // cardInvisible Animation
+            self.cardInvisible.alpha = 1
+            }, completion: shiftQueue)
+        
     }
 
     override func didReceiveMemoryWarning() {
