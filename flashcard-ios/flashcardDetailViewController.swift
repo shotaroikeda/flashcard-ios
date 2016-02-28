@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class flashcardDetailViewController: UIViewController {
     var cardFront: Card!
@@ -182,9 +183,17 @@ class flashcardDetailViewController: UIViewController {
     
     func leftSwipe ()
     {
-        print("left swipe")
-        // Animation...
+        // User got the answer wrong
+        self.cardFront.questionObj.total+=1
+        self.cardFront.questionObj.right+=1
+        self.cardFront.questionObj.weight += 0.1
         
+        if self.cardFront.questionObj.weight > 1.0
+        {
+            self.cardFront.questionObj.weight = 1.0
+        }
+
+        // Animation...
         // Movement animations
         UIView.animateWithDuration(0.5, delay: 0, options: .CurveLinear, animations: { [unowned self] in
             // cardFront Animations
@@ -218,9 +227,17 @@ class flashcardDetailViewController: UIViewController {
     func rightSwipe ()
     {
         print("right swipe")
+        // User got the answer wrong
+        self.cardFront.questionObj.total+=1
+        self.cardFront.questionObj.right+=1
+        self.cardFront.questionObj.weight *= 1 + log(0.1)
         
+        if self.cardFront.questionObj.weight < 0.2
+        {
+            self.cardFront.questionObj.weight = 0.2
+        }
+
         // Animation...
-        
         // Movement animations
         UIView.animateWithDuration(0.5, delay: 0, options: .CurveLinear, animations: { [unowned self] in
             // cardFront Animations

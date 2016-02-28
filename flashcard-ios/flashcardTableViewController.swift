@@ -21,40 +21,40 @@ class flashcardTableViewController: UITableViewController {
             [
                 /* Question 1 */
                 Question(question: "What are the four properties of Object-Orientated Programming?",
-                    answer: "Inheritance, Polymorphism, Abstraction, and Encapsulation", weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    answer: "Inheritance, Polymorphism, Abstraction, and Encapsulation", weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 2 */
                 Question(question: "What does MVC stand for?",
-                    answer: "Model, View, Controller.", weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    answer: "Model, View, Controller.", weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 3 */
                 Question(question: "Big-O Running time of BubbleSort?",
-                    answer: "O(n)", weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    answer: "O(n)", weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 4 */
                 Question(question: "Describe the QuickSort Algorithmn's running times",
                     answer: "Quicksort is generally O(nlogn). However it relies heavily on picking a correct 'pivot' value",
-                    weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 5 */
                 Question(question: "Describe the strengths of recursion.",
                     answer: "Ability to write complex code a lot simpler, Specific optimizations using recursion, and abstraction of ideas",
-                    weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 6 */
                 Question(question: "How do you commit to SVN?",
-                    answer: "svn ci -m 'commit msg'", weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    answer: "svn ci -m 'commit msg'", weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 7 */
                 Question(question: "How do you make a 2D array in Java?",
                     answer: "int arr[num1][num2];",
-                    weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 8 */
                 Question(question: "What is the key word associated with inheritance?",
                     answer: "extends",
-                    weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 9 */
                 Question(question: "What does implements do?",
                     answer: "Implements from a interface class.",
-                    weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Qusetion 10 */
                 Question(question: "What are Java's primatives?",
                     answer: "int, long, char, float, and double",
-                    weight: 1.0, tries_attempted: 0, total_attempted: 0)
+                    weight: 1.0, right_attempted: 0, total_attempted: 0)
             ],
             "CS 241" :
             /* Questions for CS 225 here... */
@@ -62,35 +62,35 @@ class flashcardTableViewController: UITableViewController {
                 /* Question 1 */
                 Question(question: "How large is a pointer?",
                     answer: "8 bytes on 64 bit machines, 4 bytes on 32 bit machines",
-                    weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 2 */
                 Question(question: "What's special about sizeof(char)?",
                     answer: "Always 1 byte",
-                    weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 3 */
                 Question(question: "How large is 1 byte (bits)?",
                     answer: "usually 8 bits, depends on architecture",
-                    weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 4 */
                 Question(question: "How do I create threads?",
                     answer: "pthread_create()",
-                    weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 5 */
                 Question(question: "What is a race condition?",
                     answer: "When two different threads attempt to access the same portion of memory, such that it occurs unintended behavior",
-                    weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 6 */
                 Question(question: "What are mutexes?",
                     answer: "Ways to block access to data structures, as a resolution to most race conditions",
-                    weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 7 */
                 Question(question: "What is the GNU Linux call to manually expand heap memory?",
                     answer: "sbrk()",
-                    weight: 1.0, tries_attempted: 0, total_attempted: 0),
+                    weight: 1.0, right_attempted: 0, total_attempted: 0),
                 /* Question 8 */
                 Question(question: "What is special about the last program argument?",
                     answer: "Always points to NULL.",
-                    weight: 1.0, tries_attempted: 0, total_attempted: 0)
+                    weight: 1.0, right_attempted: 0, total_attempted: 0)
             ]
         ]
     }
@@ -105,8 +105,11 @@ class flashcardTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         // Populate the tables with fake data...
-        populateFakeData()
+        // populateFakeData()
         // Remove when done testing
+        
+        let superViewController = self.navigationController as! flashcardViewController
+        self.userData = superViewController.userFlashCardData
         
         self.navigationController!.navigationBar.topItem!.title = "Classes"
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]

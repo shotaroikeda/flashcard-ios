@@ -14,7 +14,7 @@ class Question : AnyObject
     var question : String
     var ans : String
     var weight : Double
-    var tries : Int
+    var right : Int
     var total : Int
     
     /* Initializers */
@@ -23,16 +23,25 @@ class Question : AnyObject
         question = "Question not set"
         ans = "Answer not set"
         weight = 1.0
-        tries = 0
+        right = 0
         total = 0
     }
     
-    init(question : String, answer : String, weight : Double, tries_attempted : Int, total_attempted : Int)
+    init(question : String, answer : String)
+    {
+        self.question = question
+        self.ans = answer
+        self.weight = 1.0
+        self.right = 0
+        self.total = 0
+    }
+    
+    init(question : String, answer : String, weight : Double, right_attempted : Int, total_attempted : Int)
     {
         self.question = question
         self.ans = answer
         self.weight = weight
-        self.tries = tries_attempted
+        self.right = right_attempted
         self.total = total_attempted
     }
     
@@ -42,7 +51,7 @@ class Question : AnyObject
         question = json["question"].stringValue
         ans = json["ans"].stringValue
         weight = json["weight"].doubleValue
-        tries = json["tries"].intValue
+        right = json["right"].intValue
         total = json["total"].intValue
     }
     
@@ -59,6 +68,12 @@ class FlashCardData : AnyObject
     {
         classNames = []
         flashCards = [:]
+    }
+    
+    init(classNamesArr : [String], flashCardsMap : [String : [Question]])
+    {
+        classNames = classNamesArr
+        flashCards = flashCardsMap
     }
     
     func addClass(className : String, questionJSONArr : [JSON])

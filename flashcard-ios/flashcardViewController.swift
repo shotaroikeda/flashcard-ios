@@ -12,9 +12,34 @@ import SwiftyJSON
 class flashcardViewController: UINavigationController {
 
     var userJSON : [JSON]!
+    var userFlashCardData : FlashCardData = FlashCardData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(userJSON)
+
+        var classNames : [String] = []
+        var classQuestionMap : [String : [Question]] = [:]
+        
+        for classObj in userJSON
+        {
+            let className = classObj["class_name"].stringValue.uppercaseString
+            classNames.append(className)
+            var questionArr : [Question] = []
+            for (key, questionObj) in classObj["questions"]
+            {
+                if key == "0" {
+                    continue
+                } else {
+                    // TODO: more values from Firebase
+                    let tempQuestionObj : Question = Question(question: questionObj["question"].stringValue, answer: questionObj["answer"].stringValue)
+                    questionArr.append(tempQuestionObj)
+                }
+            }
+            classQuestionMap[className] = questionArr
+        }
+        
+        userFlashCardData = FlashCardData(classNamesArr: classNames, flashCardsMap: classQuestionMap)
     }
 
     override func didReceiveMemoryWarning() {
