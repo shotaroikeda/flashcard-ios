@@ -453,6 +453,10 @@ class flashcardDetailViewController: UIViewController {
                 self.practice = !self.practice
             }
             
+            destination.passMode = { [unowned self] in
+                self.practice = self.practice
+            }
+            
             if self.practice
             {
                 destination.modeName = "Exam Mode"

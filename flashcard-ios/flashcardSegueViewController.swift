@@ -16,6 +16,7 @@ class flashcardSegueViewController: UIViewController {
     
     @IBOutlet weak var toggleView: toggleButton!
     var setMode : (() -> Void)!
+    var passMode : (() -> Void)!
     var modeName : String!
     var desc : String!
     
@@ -28,6 +29,7 @@ class flashcardSegueViewController: UIViewController {
         }
         
         toggleView.handleCancel = { [unowned self] in
+            self.passMode()
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         
