@@ -20,6 +20,7 @@ class LoginView: UIView, UITextFieldDelegate {
     var loginButton: UIButton!
     var forgotButton: UIButton!
     var firstLaunch = true
+    var login = false
     
     let actInd = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     
@@ -97,6 +98,9 @@ class LoginView: UIView, UITextFieldDelegate {
                         self.actInd.stopAnimating()
                         self.actInd.removeFromSuperview()
                         
+                        /*if !self.login {
+                            
+                        }*/
                         self.loginSuccess(classes)
                         // Snapshot received
                     })
@@ -109,6 +113,7 @@ class LoginView: UIView, UITextFieldDelegate {
     func loginSuccess(classes: [JSON])
     {
         print("Successful log in!")
+        login = true
         
         var topVC = UIApplication.sharedApplication().keyWindow?.rootViewController
         while((topVC!.presentedViewController) != nil){

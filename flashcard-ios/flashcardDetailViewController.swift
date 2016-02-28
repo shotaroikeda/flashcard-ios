@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import Firebase
+import SwiftyJSON
 
 class flashcardDetailViewController: UIViewController {
     var cardFront: Card!
@@ -58,8 +59,8 @@ class flashcardDetailViewController: UIViewController {
             
             let action = UIAlertController(title: "Finished!", message: "You have got \(percentageRight)% right!", preferredStyle: .Alert)
             action.addAction(UIAlertAction(title: "Ok", style: .Default) { [unowned self] (_) in
-                ref.childByAppendingPath("users").childByAppendingPath(uid).childByAppendingPath("performance").childByAppendingPath(self.classTitle).childByAutoId().setValue(percentageRight, forKey: "score")
-                self.navigationController?.popToRootViewControllerAnimated(true)
+                let score = Firebase(url: "https://spartahack2016.firebaseio.com")
+                score.childByAppendingPath("users").childByAppendingPath(uid).childByAppendingPath("performance").childByAppendingPath(self.classTitle).childByAutoId().setValue(["score":percentageRight])
                 }
             )
             self.presentViewController(action, animated: true, completion: nil)
