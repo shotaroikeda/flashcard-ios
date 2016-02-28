@@ -23,6 +23,11 @@ class flashcardViewController: UINavigationController {
         
         for classObj in userJSON
         {
+            if classObj["class_name"] == nil
+            {
+                continue
+            }
+            
             let className = classObj["class_name"].stringValue.uppercaseString
             classNames.append(className)
             var questionArr : [Question] = []

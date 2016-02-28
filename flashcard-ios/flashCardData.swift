@@ -17,6 +17,12 @@ class Question : AnyObject
     var right : Int
     var total : Int
     
+    func reset() {
+        weight = 1.0
+        right = 0
+        total = 0
+    }
+    
     /* Initializers */
     init()
     {
@@ -54,7 +60,6 @@ class Question : AnyObject
         right = json["right"].intValue
         total = json["total"].intValue
     }
-    
     /* Initializers */
     
 }

@@ -22,7 +22,13 @@ class flashcardDetailViewController: UIViewController {
     var swipeRight : UISwipeGestureRecognizer!
 
     var questions : [Question]!
-    var first : Bool = true
+    var practice : Bool = true {
+        didSet {
+            self.resetQuestions()
+            self.viewDidDisappear(true)
+            self.viewDidLoad()
+        }
+    }
     
     // Buttons
     var checkMarkButton : UIButton!
@@ -31,21 +37,58 @@ class flashcardDetailViewController: UIViewController {
 
     var questionsQueue : [Question]! {
         didSet {
-            if questionsQueue.count <= 4 {
+            if practice && questionsQueue.count <= 4 {
                 print("repopulating question queue")
                 self.populateQueue()
+            } else if !practice && questionsQueue.count == 0 {
+                // upload exam statistics here
+                self.checkMarkButton.userInteractionEnabled = false
+                self.checkMarkButton.removeTarget(nil, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
+                self.xMarkButton.userInteractionEnabled = false
+                self.xMarkButton.removeTarget(nil, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
+                self.flipMarkButton.userInteractionEnabled = false
+                self.flipMarkButton.removeTarget(nil, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
+
+                let percentageRight = calcPercentage()
+                
+                let action = UIAlertController(title: "Finished!", message: "You have got right!", preferredStyle: .Alert)
+                action.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+                self.presentViewController(action, animated: true) { [unowned self] in
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
             }
         }
+    }
+    
+    func resetQuestions() {
+        questions.forEach({ $0.reset() })
+    }
+    
+    func calcPercentage() -> Double {
+        if questions.count == 0
+        {
+            return 0.0
+        }
+
+        let totalRight = questions.reduce(0, combine: { (n : Int, q : Question) in
+            return n+q.right
+        })
+        
+        return Double(totalRight) / Double(questions.count)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Populate queue initially
         self.populateQueue()
-       
-        self.navigationItem.title = classTitle
+        
+        if !practice {
+            self.navigationItem.title = classTitle + " - Exam"
+        } else {
+            self.navigationItem.title = classTitle
+        }
+        
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addCard")
         
         loadCards()
         
@@ -66,7 +109,7 @@ class flashcardDetailViewController: UIViewController {
         xMarkButton.setImage(xMark, forState: .Normal)
         xMarkButton.addTarget(self, action: "leftSwipe", forControlEvents: .TouchUpInside)
         self.view.addSubview(xMarkButton)
-
+        
         let flipMark = UIImage(named: "flipCard") as UIImage?
         flipMarkButton = UIButton(type: UIButtonType.Custom) as UIButton
         flipMarkButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
@@ -75,20 +118,16 @@ class flashcardDetailViewController: UIViewController {
         flipMarkButton.setImage(flipMark, forState: .Normal)
         flipMarkButton.addTarget(self, action: "doubleTapped", forControlEvents: .TouchUpInside)
         self.view.addSubview(flipMarkButton)
+
     }
     
-    func addCard()
-    {
-        
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(true)
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(true)
         cardFront.removeFromSuperview()
         cardMid.removeFromSuperview()
         cardBack.removeFromSuperview()
         cardInvisible.removeFromSuperview()
-
+        
         tapRecogPlane.removeGestureRecognizer(doubleTap)
         tapRecogPlane.removeGestureRecognizer(swipeLeft)
         tapRecogPlane.removeGestureRecognizer(swipeRight)
@@ -102,9 +141,65 @@ class flashcardDetailViewController: UIViewController {
         cardBack = Card()
         cardInvisible = Card()
         
+        if !practice && questionsQueue.count == 0 {
+            // Alert
+            return
+        }
+        
+        else if !practice && questionsQueue.count == 1 {
+            cardFront.loadQuestion(nextQuestion)
+            
+            let workableWidth = self.view.bounds.width
+            let workableHeight = self.view.bounds.height
+            
+            let cardWidth = workableWidth - 70
+            let cardHeight = workableHeight - 200
+            
+            // Set up cards...
+            cardFront.frame = CGRect(x: 50, y: (self.navigationController?.navigationBar.frame.size.height)!+40, width: cardWidth, height: cardHeight)
+            cardMid.frame = CGRect(x: 35, y: (self.navigationController?.navigationBar.frame.size.height)!+55, width: cardWidth, height: cardHeight)
+            cardBack.frame = CGRect(x: 20, y: (self.navigationController?.navigationBar.frame.size.height)!+70, width: cardWidth, height: cardHeight)
+            cardInvisible.frame = CGRect(x: -30, y: (self.navigationController?.navigationBar.frame.size.height)!+120, width: cardWidth, height: cardHeight)
+            
+            cardMid.alpha = 0
+            cardBack.alpha = 0
+            // Card invisible is invisible
+            cardInvisible.alpha = 0
+            
+            // Add the subviews
+            view.addSubview(cardFront)
+            return
+        } else if !practice && questionsQueue.count == 2 {
+            cardFront.loadQuestion(nextQuestion)
+            cardMid.loadQuestion(questionsQueue[questionsQueue.count-1])
+            
+            // Set up workableRegion
+            let workableWidth = self.view.bounds.width
+            let workableHeight = self.view.bounds.height
+            
+            let cardWidth = workableWidth - 70
+            let cardHeight = workableHeight - 200
+            
+            // Set up cards...
+            cardFront.frame = CGRect(x: 50, y: (self.navigationController?.navigationBar.frame.size.height)!+40, width: cardWidth, height: cardHeight)
+            cardMid.frame = CGRect(x: 35, y: (self.navigationController?.navigationBar.frame.size.height)!+55, width: cardWidth, height: cardHeight)
+            cardBack.frame = CGRect(x: 20, y: (self.navigationController?.navigationBar.frame.size.height)!+70, width: cardWidth, height: cardHeight)
+            cardInvisible.frame = CGRect(x: -30, y: (self.navigationController?.navigationBar.frame.size.height)!+120, width: cardWidth, height: cardHeight)
+            
+            cardBack.alpha = 0
+            // Card invisible is invisible
+            cardInvisible.alpha = 0
+            
+            // Add the subviews
+            view.addSubview(cardMid)
+            view.addSubview(cardFront)
+            
+            return
+
+        }
+        
         cardFront.loadQuestion(nextQuestion)
         cardMid.loadQuestion(questionsQueue[questionsQueue.count-1])
-        
         
         // Set up workableRegion
         let workableWidth = self.view.bounds.width
@@ -127,6 +222,7 @@ class flashcardDetailViewController: UIViewController {
         view.addSubview(cardBack)
         view.addSubview(cardMid)
         view.addSubview(cardFront)
+        
     }
     
     // MARK: Animation/Queue helper functions
@@ -279,14 +375,17 @@ class flashcardDetailViewController: UIViewController {
     func populateQueue()
     {
         // TODO: can be optimized (hacky)
-        let totalWeight = questions.reduce(0.0) { (n : Double, q : Question) -> Double in
-            return n + q.weight
+        if practice {
+            let totalWeight = questions.reduce(0.0) { (n : Double, q : Question) -> Double in
+                return n + q.weight
+            }
+            let weightArrs = (0..<25).map({ (_ : Int) -> Double in
+                Double(Float(arc4random()) / Float(UINT32_MAX)) * totalWeight
+            })
+            questionsQueue = weightArrs.map({ return findWeight($0) })
+        } else {
+            questionsQueue = questions.map({ $0 })
         }
-        let weightArrs = (0..<25).map({ (_ : Int) -> Double in
-            Double(Float(arc4random()) / Float(UINT32_MAX)) * totalWeight
-        })
-        
-        questionsQueue = weightArrs.map({ return findWeight($0) })
     }
     
     func findWeight(weight : Double) -> Question
@@ -303,14 +402,29 @@ class flashcardDetailViewController: UIViewController {
         return questions[questions.count-1]
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "testModeOption"
+        {
+            let destination = segue.destinationViewController as! flashcardSegueViewController
+            destination.setMode = { [unowned self] in
+                self.practice = !self.practice
+            }
+            
+            if self.practice
+            {
+                destination.modeName = "Exam Mode"
+                destination.desc = "Exam Mode offers advanced statistics tracking."
+            } else {
+                destination.modeName = "Flash Mode"
+                destination.desc = "Flash Mode offers a comprehensive way to study material."
+            }
+        }
     }
-    */
 
 }

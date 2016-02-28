@@ -59,11 +59,80 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="p0D-Cf-Oaa"/>
+                    <navigationItem key="navigationItem" id="p0D-Cf-Oaa">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="otv-1C-DHI">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="ETJ-5e-cLp" kind="presentation" identifier="testModeOption" id="ulY-le-gut"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ciw-DT-IvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3288" y="596"/>
+            <point key="canvasLocation" x="3028" y="596"/>
+        </scene>
+        <!--Flashcard Segue View Controller-->
+        <scene sceneID="Rgg-T8-R6c">
+            <objects>
+                <viewController id="ETJ-5e-cLp" customClass="flashcardSegueViewController" customModule="flashcard_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2ce-Wz-GN0"/>
+                        <viewControllerLayoutGuide type="bottom" id="qgD-Kx-m55"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Frt-aP-VaQ" customClass="flashcardsMode" customModule="flashcard_ios" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test Mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mog-I5-aw9">
+                                <rect key="frame" x="179" y="28" width="242" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="242" id="VEw-EO-oex"/>
+                                    <constraint firstAttribute="height" constant="56" id="WaL-Kv-GbJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Message here...." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tdb-tR-y53">
+                                <rect key="frame" x="179" y="92" width="242" height="118"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="118" id="JZD-bd-71a"/>
+                                    <constraint firstAttribute="width" constant="242" id="U7F-Ie-x3O"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7Q-dt-faw" customClass="toggleButton" customModule="flashcard_ios" customModuleProvider="target">
+                                <rect key="frame" x="179" y="274" width="242" height="150"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="242" id="Jhs-Fj-iNn"/>
+                                    <constraint firstAttribute="height" constant="150" id="JiZ-uh-AMd"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="qgD-Kx-m55" firstAttribute="top" secondItem="a7Q-dt-faw" secondAttribute="bottom" constant="176" id="CGn-7v-ACq"/>
+                            <constraint firstItem="Tdb-tR-y53" firstAttribute="centerX" secondItem="Frt-aP-VaQ" secondAttribute="centerX" id="HDE-G6-2gc"/>
+                            <constraint firstItem="mog-I5-aw9" firstAttribute="top" secondItem="2ce-Wz-GN0" secondAttribute="bottom" constant="8" id="Iqg-4i-PbB"/>
+                            <constraint firstItem="a7Q-dt-faw" firstAttribute="centerX" secondItem="Frt-aP-VaQ" secondAttribute="centerX" id="VDJ-cn-Bgo"/>
+                            <constraint firstItem="Tdb-tR-y53" firstAttribute="top" secondItem="mog-I5-aw9" secondAttribute="bottom" constant="8" id="Zc9-av-t7B"/>
+                            <constraint firstItem="a7Q-dt-faw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Tdb-tR-y53" secondAttribute="bottom" priority="999" constant="30" id="dui-G6-m0R"/>
+                            <constraint firstItem="mog-I5-aw9" firstAttribute="centerX" secondItem="Frt-aP-VaQ" secondAttribute="centerX" id="eZf-Bu-bga"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="descLabel" destination="Tdb-tR-y53" id="Wgf-UR-1qS"/>
+                        <outlet property="titleLabel" destination="mog-I5-aw9" id="03Y-Lf-lA0"/>
+                        <outlet property="toggleView" destination="a7Q-dt-faw" id="LjR-dh-JkM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GNM-CH-IIF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3842" y="596"/>
         </scene>
         <!--Flashcard View Controller-->
         <scene sceneID="RWa-ui-G81">

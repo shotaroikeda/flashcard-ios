@@ -11,6 +11,8 @@
 		E21842481C825C9A00F6AFD0 /* flashcardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21842471C825C9A00F6AFD0 /* flashcardDetailViewController.swift */; };
 		E218424A1C82704600F6AFD0 /* myTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21842491C82704600F6AFD0 /* myTextView.swift */; };
 		E21C08F21C82B52900AB60C2 /* flashcardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21C08F11C82B52900AB60C2 /* flashcardViewController.swift */; };
+		E25566141C82F24E00E94048 /* toggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25566131C82F24E00E94048 /* toggleButton.swift */; };
+		E25566181C83076000E94048 /* flashcardSegueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25566171C83076000E94048 /* flashcardSegueViewController.swift */; };
 		E27D65471C816A590078DF40 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27D65461C816A590078DF40 /* LoginView.swift */; };
 		E28F42571C815A6B0079A16D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28F42561C815A6B0079A16D /* AppDelegate.swift */; };
 		E28F42591C815A6B0079A16D /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28F42581C815A6B0079A16D /* loginViewController.swift */; };
@@ -29,6 +31,8 @@
 		E21842471C825C9A00F6AFD0 /* flashcardDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = flashcardDetailViewController.swift; sourceTree = "<group>"; };
 		E21842491C82704600F6AFD0 /* myTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myTextView.swift; sourceTree = "<group>"; };
 		E21C08F11C82B52900AB60C2 /* flashcardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = flashcardViewController.swift; sourceTree = "<group>"; };
+		E25566131C82F24E00E94048 /* toggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = toggleButton.swift; sourceTree = "<group>"; };
+		E25566171C83076000E94048 /* flashcardSegueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = flashcardSegueViewController.swift; sourceTree = "<group>"; };
 		E27D65461C816A590078DF40 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E28F42531C815A6B0079A16D /* flashcard-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "flashcard-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E28F42561C815A6B0079A16D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				E28F42561C815A6B0079A16D /* AppDelegate.swift */,
-				E2BF1E441C81FC3300F9F94E /* cardView */,
+				E2BF1E441C81FC3300F9F94E /* resuables */,
 				E2E89BDA1C81B9890060797A /* flashcards */,
 				E27D65451C8165B80078DF40 /* login */,
 				E28F425D1C815A6B0079A16D /* Assets.xcassets */,
@@ -117,24 +121,26 @@
 			path = "flashcard-ios";
 			sourceTree = "<group>";
 		};
-		E2BF1E441C81FC3300F9F94E /* cardView */ = {
+		E2BF1E441C81FC3300F9F94E /* resuables */ = {
 			isa = PBXGroup;
 			children = (
 				E2A32A651C820C6500D01C16 /* Card.swift */,
+				E25566131C82F24E00E94048 /* toggleButton.swift */,
 				E21842491C82704600F6AFD0 /* myTextView.swift */,
+				E2F41E8A1C81C50000743BEF /* flashCardData.swift */,
 			);
-			name = cardView;
+			name = resuables;
 			sourceTree = "<group>";
 		};
 		E2E89BDA1C81B9890060797A /* flashcards */ = {
 			isa = PBXGroup;
 			children = (
 				E2E89BD81C81B97F0060797A /* flashcards.storyboard */,
+				E25566171C83076000E94048 /* flashcardSegueViewController.swift */,
 				E21842471C825C9A00F6AFD0 /* flashcardDetailViewController.swift */,
 				E2F41E8E1C81DDAE00743BEF /* flashcardTableViewCell.swift */,
 				E21C08F11C82B52900AB60C2 /* flashcardViewController.swift */,
 				E2F41E881C81C4D200743BEF /* flashcardTableViewController.swift */,
-				E2F41E8A1C81C50000743BEF /* flashCardData.swift */,
 			);
 			name = flashcards;
 			sourceTree = "<group>";
@@ -273,6 +279,8 @@
 				E27D65471C816A590078DF40 /* LoginView.swift in Sources */,
 				E28F42591C815A6B0079A16D /* loginViewController.swift in Sources */,
 				E2A32A661C820C6500D01C16 /* Card.swift in Sources */,
+				E25566181C83076000E94048 /* flashcardSegueViewController.swift in Sources */,
+				E25566141C82F24E00E94048 /* toggleButton.swift in Sources */,
 				E2F41E8F1C81DDAE00743BEF /* flashcardTableViewCell.swift in Sources */,
 				E2F41E8B1C81C50000743BEF /* flashCardData.swift in Sources */,
 				E28F42571C815A6B0079A16D /* AppDelegate.swift in Sources */,
