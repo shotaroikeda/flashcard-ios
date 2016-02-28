@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18820CBCF7181EF3CC208447 /* Pods_flashcard_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF790B4EEADCEA63DCE467AB /* Pods_flashcard_ios.framework */; };
 		E21842481C825C9A00F6AFD0 /* flashcardDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21842471C825C9A00F6AFD0 /* flashcardDetailViewController.swift */; };
+		E218424A1C82704600F6AFD0 /* myTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21842491C82704600F6AFD0 /* myTextView.swift */; };
 		E27D65471C816A590078DF40 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27D65461C816A590078DF40 /* LoginView.swift */; };
 		E28F42571C815A6B0079A16D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28F42561C815A6B0079A16D /* AppDelegate.swift */; };
 		E28F42591C815A6B0079A16D /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28F42581C815A6B0079A16D /* loginViewController.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		1F675D18855231D9DD0AA455 /* Pods-flashcard-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashcard-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-flashcard-ios/Pods-flashcard-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		E21842471C825C9A00F6AFD0 /* flashcardDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = flashcardDetailViewController.swift; sourceTree = "<group>"; };
+		E21842491C82704600F6AFD0 /* myTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myTextView.swift; sourceTree = "<group>"; };
 		E27D65461C816A590078DF40 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E28F42531C815A6B0079A16D /* flashcard-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "flashcard-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E28F42561C815A6B0079A16D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				E2A32A651C820C6500D01C16 /* Card.swift */,
+				E21842491C82704600F6AFD0 /* myTextView.swift */,
 			);
 			name = cardView;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				E2F41E8F1C81DDAE00743BEF /* flashcardTableViewCell.swift in Sources */,
 				E2F41E8B1C81C50000743BEF /* flashCardData.swift in Sources */,
 				E28F42571C815A6B0079A16D /* AppDelegate.swift in Sources */,
+				E218424A1C82704600F6AFD0 /* myTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
