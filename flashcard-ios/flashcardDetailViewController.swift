@@ -22,6 +22,11 @@ class flashcardDetailViewController: UIViewController {
 
     var questions : [Question]! = [Question()]
     var first : Bool = true
+    
+    // Buttons
+    var checkMarkButton : UIButton!
+    var xMarkButton : UIButton!
+    var flipMarkButton : UIButton!
 
     var questionsQueue : [Question]! {
         didSet {
@@ -41,8 +46,28 @@ class flashcardDetailViewController: UIViewController {
         initGestures()
         
         // Add buttons
+        let checkMark = UIImage(named: "correctImg") as UIImage?
+        checkMarkButton = UIButton(type: UIButtonType.Custom) as UIButton
+        checkMarkButton.frame = CGRect(x: view.bounds.width-65, y: view.bounds.height-65, width: 40, height: 40)
+        checkMarkButton.setImage(checkMark, forState: .Normal)
+        checkMarkButton.addTarget(self, action: "rightSwipe", forControlEvents: .TouchUpInside)
+        self.view.addSubview(checkMarkButton)
         
-        
+        let xMark = UIImage(named: "incorrectImg") as UIImage?
+        xMarkButton = UIButton(type: UIButtonType.Custom) as UIButton
+        xMarkButton.frame = CGRect(x: 25, y: view.bounds.height-65, width: 40, height: 40)
+        xMarkButton.setImage(xMark, forState: .Normal)
+        xMarkButton.addTarget(self, action: "leftSwipe", forControlEvents: .TouchUpInside)
+        self.view.addSubview(xMarkButton)
+
+        let flipMark = UIImage(named: "flipCard") as UIImage?
+        flipMarkButton = UIButton(type: UIButtonType.Custom) as UIButton
+        flipMarkButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        flipMarkButton.center.x = view.bounds.width / 2
+        flipMarkButton.center.y = view.bounds.height - 43
+        flipMarkButton.setImage(flipMark, forState: .Normal)
+        flipMarkButton.addTarget(self, action: "doubleTapped", forControlEvents: .TouchUpInside)
+        self.view.addSubview(flipMarkButton)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -91,7 +116,14 @@ class flashcardDetailViewController: UIViewController {
     func shiftQueue(finished: Bool)
     {
         if finished {
-            self.view.userInteractionEnabled = false
+            self.checkMarkButton.userInteractionEnabled = false
+            self.xMarkButton.userInteractionEnabled = false
+            self.flipMarkButton.userInteractionEnabled = false
+            
+            self.checkMarkButton.selected = true
+            self.xMarkButton.selected = true
+            self.flipMarkButton.selected = true
+            
             // clean up
             cardFront.removeFromSuperview()
             cardMid.removeFromSuperview()
@@ -101,9 +133,14 @@ class flashcardDetailViewController: UIViewController {
             
             // reload the cards
             loadCards()
-            
+
             self.view.addSubview(tapRecogPlane)
-            self.view.userInteractionEnabled = true
+            self.checkMarkButton.selected = false
+            self.xMarkButton.selected = false
+            self.flipMarkButton.selected = false
+            self.checkMarkButton.userInteractionEnabled = true
+            self.xMarkButton.userInteractionEnabled = true
+            self.flipMarkButton.userInteractionEnabled = true
         }
     }
     
@@ -168,7 +205,6 @@ class flashcardDetailViewController: UIViewController {
             // cardInvisible Animation
             self.cardInvisible.alpha = 1
             }, completion: shiftQueue)
-
     }
     
     func rightSwipe ()
@@ -203,7 +239,6 @@ class flashcardDetailViewController: UIViewController {
             // cardInvisible Animation
             self.cardInvisible.alpha = 1
             }, completion: shiftQueue)
-        
     }
 
     override func didReceiveMemoryWarning() {

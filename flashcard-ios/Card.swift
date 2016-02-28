@@ -24,6 +24,11 @@ import UIKit
         fatalError("init(coder:) has not been implemented")
     }
     */
+    func loadQuestion(q :Question)
+    {
+        frontText.text = q.question
+        backText.text = q.ans
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()

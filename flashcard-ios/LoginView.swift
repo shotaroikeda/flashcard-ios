@@ -101,6 +101,7 @@ class LoginView: UIView, UITextFieldDelegate {
     func loginSuccess(snapshot: FDataSnapshot) -> Void
     {
         let json = JSON(snapshot.value)
+        print(json)
         print("Successful log in!")
         
         var topVC = UIApplication.sharedApplication().keyWindow?.rootViewController
