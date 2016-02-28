@@ -245,15 +245,8 @@ class LoginView: UIView, UITextFieldDelegate {
         backgroundLayer.frame = layer.bounds
     }
     let sampleTextField = UITextField(frame: CGRectMake(20, 100, 300, 40))
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
     
-    // MARK:- ---> Textfield Delegates
+    // MARK: Textfield Delegates
     func textFieldDidBeginEditing(textField: UITextField) {
     }
     
@@ -286,6 +279,6 @@ class LoginView: UIView, UITextFieldDelegate {
         }
         return true;
     }
-    // MARK: Textfield Delegates <---
+    // MARK: Textfield Delegates
 
 }
