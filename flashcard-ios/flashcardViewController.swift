@@ -16,7 +16,6 @@ class flashcardViewController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(userJSON)
 
         var classNames : [String] = []
         var classQuestionMap : [String : [Question]] = [:]

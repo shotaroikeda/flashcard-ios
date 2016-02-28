@@ -35,32 +35,41 @@ class flashcardDetailViewController: UIViewController {
     var checkMarkButton : UIButton!
     var xMarkButton : UIButton!
     var flipMarkButton : UIButton!
+    
+    var finish : Bool = false {
+        didSet {
+            // upload exam statistics here
+            self.checkMarkButton.userInteractionEnabled = false
+            self.checkMarkButton.removeTarget(nil, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
+            self.xMarkButton.userInteractionEnabled = false
+            self.xMarkButton.removeTarget(nil, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
+            self.flipMarkButton.userInteractionEnabled = false
+            self.flipMarkButton.removeTarget(nil, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
+            
+            /* Add firebase code here */
+            var percentageRight = calcPercentage()*100
+            if percentageRight > 100 {
+                percentageRight = 100
+            }
+            
+            let uid = ref.authData.uid
+            print(uid)
+        ref.childByAppendingPath("users").childByAppendingPath(uid).childByAppendingPath("performance").childByAppendingPath(classTitle).childByAutoId().setValue(["score":percentageRight])
+            
+            let action = UIAlertController(title: "Finished!", message: "You have got \(percentageRight)% right!", preferredStyle: .Alert)
+            action.addAction(UIAlertAction(title: "Ok", style: .Default) { [unowned self] (_) in
+                self.navigationController?.popToRootViewControllerAnimated(true)
+                }
+            )
+            self.presentViewController(action, animated: true, completion: nil)
+        }
+    }
 
     var questionsQueue : [Question]! {
         didSet {
             if practice && questionsQueue.count <= 4 {
                 print("repopulating question queue")
                 self.populateQueue()
-            } else if !practice && questionsQueue.count == 0 {
-                // upload exam statistics here
-                self.checkMarkButton.userInteractionEnabled = false
-                self.checkMarkButton.removeTarget(nil, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
-                self.xMarkButton.userInteractionEnabled = false
-                self.xMarkButton.removeTarget(nil, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
-                self.flipMarkButton.userInteractionEnabled = false
-                self.flipMarkButton.removeTarget(nil, action: nil, forControlEvents: UIControlEvents.TouchUpInside)
-
-                /* Add firebase code here */
-                let percentageRight = calcPercentage()*100
-                
-                
-                
-                let action = UIAlertController(title: "Finished!", message: "You have got \(percentageRight)% right!", preferredStyle: .Alert)
-                action.addAction(UIAlertAction(title: "Ok", style: .Default) { [unowned self] (_) in
-                        self.navigationController?.popToRootViewControllerAnimated(true)
-                    }
-                )
-                self.presentViewController(action, animated: true, completion: nil)
             }
         }
     }
@@ -75,7 +84,7 @@ class flashcardDetailViewController: UIViewController {
             return 0.0
         }
 
-        let totalRight = questions.reduce(1, combine: { (n : Int, q : Question) in
+        let totalRight = questions.reduce(0, combine: { (n : Int, q : Question) in
             return n+q.right
         })
         
@@ -139,7 +148,6 @@ class flashcardDetailViewController: UIViewController {
     }
     
     func loadCards() {
-        let nextQuestion = questionsQueue.popLast()!
         // Do any additional setup after loading the view.
         cardFront = Card()
         cardMid = Card()
@@ -147,11 +155,12 @@ class flashcardDetailViewController: UIViewController {
         cardInvisible = Card()
         
         if !practice && questionsQueue.count == 0 {
-            // Alert
+            finish = true
             return
         }
         
         else if !practice && questionsQueue.count == 1 {
+            let nextQuestion = questionsQueue.popLast()!
             cardFront.loadQuestion(nextQuestion)
             
             let workableWidth = self.view.bounds.width
@@ -172,6 +181,7 @@ class flashcardDetailViewController: UIViewController {
             view.addSubview(cardFront)
             return
         } else if !practice && questionsQueue.count == 2 {
+            let nextQuestion = questionsQueue.popLast()!
             cardFront.loadQuestion(nextQuestion)
             cardMid.loadQuestion(questionsQueue[questionsQueue.count-1])
             
@@ -197,6 +207,8 @@ class flashcardDetailViewController: UIViewController {
             return
 
         } else if !practice && questionsQueue.count == 3 {
+                let nextQuestion = questionsQueue.popLast()!
+
                 cardFront.loadQuestion(nextQuestion)
                 cardMid.loadQuestion(questionsQueue[questionsQueue.count-1])
                 
@@ -219,7 +231,8 @@ class flashcardDetailViewController: UIViewController {
                 
                 return
         }
-        
+        let nextQuestion = questionsQueue.popLast()!
+
         cardFront.loadQuestion(nextQuestion)
         cardMid.loadQuestion(questionsQueue[questionsQueue.count-1])
         
@@ -396,6 +409,7 @@ class flashcardDetailViewController: UIViewController {
     
     func populateQueue()
     {
+        print(questions.count)
         // TODO: can be optimized (hacky)
         if practice {
             let totalWeight = questions.reduce(0.0) { (n : Double, q : Question) -> Double in
