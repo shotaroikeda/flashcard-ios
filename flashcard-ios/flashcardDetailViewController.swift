@@ -44,7 +44,9 @@ class flashcardDetailViewController: UIViewController {
         self.populateQueue()
        
         self.navigationItem.title = classTitle
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addCard")
+        
         loadCards()
         
         // Initialize Gestures
@@ -73,6 +75,11 @@ class flashcardDetailViewController: UIViewController {
         flipMarkButton.setImage(flipMark, forState: .Normal)
         flipMarkButton.addTarget(self, action: "doubleTapped", forControlEvents: .TouchUpInside)
         self.view.addSubview(flipMarkButton)
+    }
+    
+    func addCard()
+    {
+        
     }
     
     override func viewWillDisappear(animated: Bool) {

@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
@@ -42,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         localNotification.alertBody = "It's time to review!"
         localNotification.alertAction = "Open"
         localNotification.category = "closedAndReadyToReviewCategory"
+        localNotification.soundName = UILocalNotificationDefaultSoundName
         
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
 
