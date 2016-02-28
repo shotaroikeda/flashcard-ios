@@ -11,6 +11,7 @@ import UIKit
 @IBDesignable class Card: UIView {
     var backgroundLayer : CAShapeLayer!
     var front = true
+    var questionObj = Question()
     
     @IBInspectable var frontText : myTextView!
     @IBInspectable var backText : myTextView!
@@ -26,8 +27,7 @@ import UIKit
     */
     func loadQuestion(q :Question)
     {
-        frontText.text = q.question
-        backText.text = q.ans
+        questionObj = q
     }
     
     override func layoutSubviews() {
@@ -44,14 +44,14 @@ import UIKit
     {
         // Draw the UITextView to View
         frontText = myTextView(frame: CGRect(x: 10, y: 10, width: Int(bounds.width)-20, height: Int(bounds.height)-20))
-        frontText.text = "Front Text"
+        frontText.text = questionObj.question
         frontText.font = UIFont.boldSystemFontOfSize(18)
         frontText.textAlignment = .Center
         frontText.backgroundColor = UIColor.clearColor()
         frontText.textColor = UIColor.blackColor()
         
         backText = myTextView(frame: CGRect(x: 10, y: 10, width: Int(bounds.width)-20, height: Int(bounds.height)-20))
-        backText.text = "Back Text"
+        backText.text = questionObj.ans
         backText.font = UIFont.boldSystemFontOfSize(18)
         backText.textAlignment = .Center
         backText.backgroundColor = UIColor.clearColor()

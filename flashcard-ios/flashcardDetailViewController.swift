@@ -15,12 +15,12 @@ class flashcardDetailViewController: UIViewController {
     var cardInvisible: Card!
     var tapRecogPlane: UIView!
     
-    var classTitle : String = "ClassNotSet"
+    var classTitle : String!
     var doubleTap : UITapGestureRecognizer!
     var swipeLeft : UISwipeGestureRecognizer!
     var swipeRight : UISwipeGestureRecognizer!
 
-    var questions : [Question]! = [Question()]
+    var questions : [Question]!
     var first : Bool = true
     
     // Buttons
@@ -30,7 +30,8 @@ class flashcardDetailViewController: UIViewController {
 
     var questionsQueue : [Question]! {
         didSet {
-            if questionsQueue.count == 4 {
+            if questionsQueue.count <= 4 {
+                print("repopulating question queue")
                 self.populateQueue()
             }
         }
@@ -38,6 +39,8 @@ class flashcardDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Populate queue initially
+        self.populateQueue()
        
         self.navigationItem.title = classTitle
         loadCards()
@@ -83,11 +86,16 @@ class flashcardDetailViewController: UIViewController {
     }
     
     func loadCards() {
+        let nextQuestion = questionsQueue.popLast()!
         // Do any additional setup after loading the view.
         cardFront = Card()
         cardMid = Card()
         cardBack = Card()
         cardInvisible = Card()
+        
+        cardFront.loadQuestion(nextQuestion)
+        cardMid.loadQuestion(questionsQueue[questionsQueue.count-1])
+        
         
         // Set up workableRegion
         let workableWidth = self.view.bounds.width
@@ -249,7 +257,7 @@ class flashcardDetailViewController: UIViewController {
     func populateQueue()
     {
         // TODO: can be optimized (hacky)
-        let totalWeight = questionsQueue.reduce(0.0) { (n : Double, q : Question) -> Double in
+        let totalWeight = questions.reduce(0.0) { (n : Double, q : Question) -> Double in
             return n + q.weight
         }
         let weightArrs = (0..<25).map({ (_ : Int) -> Double in

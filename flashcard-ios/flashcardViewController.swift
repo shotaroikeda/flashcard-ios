@@ -16,7 +16,6 @@ class flashcardViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        print(userJSON)
     }
 
     override func didReceiveMemoryWarning() {

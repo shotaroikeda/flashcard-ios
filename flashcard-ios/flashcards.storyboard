@@ -31,7 +31,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="classLabel" destination="kkI-cs-2Cx" id="wOR-jH-M5r"/>
-                                    <segue destination="a00-9c-hBX" kind="show" id="dYy-vt-236"/>
+                                    <segue destination="a00-9c-hBX" kind="show" identifier="toCardView" id="dYy-vt-236"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
