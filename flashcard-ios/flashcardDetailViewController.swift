@@ -44,6 +44,7 @@ class flashcardDetailViewController: UIViewController {
         self.populateQueue()
        
         self.navigationItem.title = classTitle
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
         loadCards()
         
         // Initialize Gestures
@@ -177,7 +178,6 @@ class flashcardDetailViewController: UIViewController {
     
     func doubleTapped ()
     {
-        print("Tap is working")
         cardFront.showNextPanel()
     }
     
@@ -226,7 +226,6 @@ class flashcardDetailViewController: UIViewController {
     
     func rightSwipe ()
     {
-        print("right swipe")
         // User got the answer wrong
         self.cardFront.questionObj.total+=1
         self.cardFront.questionObj.right+=1
