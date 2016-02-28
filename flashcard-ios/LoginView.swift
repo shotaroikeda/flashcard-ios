@@ -92,9 +92,11 @@ class LoginView: UIView, UITextFieldDelegate {
                             }
                         }
                         
+                        NSUserDefaults.standardUserDefaults().setObject(authData.uid, forKey: "uid")
+                        
                         self.actInd.stopAnimating()
                         self.actInd.removeFromSuperview()
-                        print(classes)
+                        
                         self.loginSuccess(classes)
                         // Snapshot received
                     })

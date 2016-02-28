@@ -52,12 +52,13 @@ class flashcardDetailViewController: UIViewController {
                 percentageRight = 100
             }
             
-            let uid = ref.authData.uid
+            let uid = NSUserDefaults.standardUserDefaults().stringForKey("uid")!
             print(uid)
-        ref.childByAppendingPath("users").childByAppendingPath(uid).childByAppendingPath("performance").childByAppendingPath(classTitle).childByAutoId().setValue(["score":percentageRight])
+
             
             let action = UIAlertController(title: "Finished!", message: "You have got \(percentageRight)% right!", preferredStyle: .Alert)
             action.addAction(UIAlertAction(title: "Ok", style: .Default) { [unowned self] (_) in
+                ref.childByAppendingPath("users").childByAppendingPath(uid).childByAppendingPath("performance").childByAppendingPath(self.classTitle).childByAutoId().setValue(percentageRight, forKey: "score")
                 self.navigationController?.popToRootViewControllerAnimated(true)
                 }
             )
@@ -409,7 +410,6 @@ class flashcardDetailViewController: UIViewController {
     
     func populateQueue()
     {
-        print(questions.count)
         // TODO: can be optimized (hacky)
         if practice {
             let totalWeight = questions.reduce(0.0) { (n : Double, q : Question) -> Double in
